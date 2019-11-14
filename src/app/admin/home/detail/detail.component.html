@@ -1,0 +1,16 @@
+<div class="col-lg-12">
+  <div class="d-flex justify-content-end align-items-center">
+    <button nbButton [routerLink]="'/home'" status="success">Назад</button>
+  </div>
+</div>
+<div *ngIf="!!meal">
+  <div class="container-fluid">
+    <div class="container">
+      <h1>{{meal.title}}</h1>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="noMeal">
+  <h1>No Such a meal Return <strong>Home</strong></h1>
+</div>

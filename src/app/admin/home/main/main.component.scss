@@ -1,0 +1,46 @@
+.no-underline {
+  text-decoration: none !important;
+}
+@media (min-width: 992px) {
+  .food-navigation {
+    width: 25%;
+    min-width: 25%;
+  }
+  .food-list {
+    width: 75%;
+    min-width: 75%;
+  }
+}
+
+@media (min-width: 992px) {
+  .food-navigation {
+    width: 30%;
+    min-width: 30%;
+  }
+  .food-list {
+    width: 70%;
+    min-width: 70%;
+  }
+}
+
+.addToCartBtn {
+  width: 93%;
+}
+.redBtn {
+  color: red;
+  left: 4px;
+}
+
+.greenBtn {
+  color: green;
+  position: absolute;
+  right: 16px;
+}
+nb-list-item {
+  cursor: pointer;
+}
+nb-list-item:hover {
+  color: #673ab7;
+  font-size: 110%;
+  font-weight: bold;
+}

@@ -1,0 +1,24 @@
+<nb-card>
+  <div class="row">
+    <div class="col-lg-3 col-md-4">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSn-DiqCnzROceQG11HD4LozPNUHmG32uQ65EX-som7AOVSgeu4" alt="">
+    </div>
+    <div class="col-lg-9 col-md-8">
+      <nb-card class="company-descr">
+        <nb-card-header>
+          Smug Burher Достык Плаза, <span class="category"> фаст-фуд</span>
+        </nb-card-header>
+        <nb-card-body>
+          Кухня: Европейская, Американская
+        </nb-card-body>
+        <nb-card-footer>
+          <div class="example-button-row">
+            <button mat-button id="homeBtn" color="primary" [routerLink]="['/home']">Меню</button>
+            <button mat-button name="route-header" id="aboutBtn" color="primary" [routerLink]="['/home/about']">О ресторане</button>
+            <button mat-button name="route-header" id="reviewBtn" color="primary" [routerLink]="['/home/review']">Отзывы</button>
+          </div>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</nb-card>
