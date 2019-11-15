@@ -31,8 +31,8 @@ export class MealService {
       headers: this.headers,
     });
   }
-  public getMealByCategory(id): Observable<Meal> {
-    return this.http.get<Meal>(this.fullUrl + `/category/${id}`, {
+  public getMealByCategory(id): Observable<Meal[]> {
+    return this.http.get<Meal[]>(this.fullUrl + `/category/${id}`, {
       headers: this.headers,
     });
   }

@@ -21,8 +21,8 @@ export class CategoryService {
       headers: this.headers,
     });
   }
-  public getCategoryById (id): Observable<Category[]> {
-    return this.http.get<Category[]>(this.fullUrl + `/${id}`, {
+  public getCategoryById (id): Observable<Category> {
+    return this.http.get<Category>(this.fullUrl + `/${id}`, {
       headers: this.headers,
     });
   }

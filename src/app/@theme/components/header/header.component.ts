@@ -72,11 +72,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       )
       .subscribe(themeName => this.currentTheme = themeName);
   }
-  sdd() {
-    console.log('sdsdsdsds');
-    this.meals = [];
-    this.meals.push({ title: 'Бургер'})
-  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

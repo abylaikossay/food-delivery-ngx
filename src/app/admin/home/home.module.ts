@@ -4,7 +4,7 @@ import {CommonModule} from '@angular/common';
 import {HomeRoutingModule} from './home-routing.module';
 import {HomeComponent} from './home.component';
 import {MainComponent} from './main/main.component';
-import {NbButtonModule, NbCardModule, NbInputModule, NbListModule} from '@nebular/theme';
+import {NbButtonModule, NbCardModule, NbDialogModule, NbInputModule, NbListModule, NbMenuModule} from '@nebular/theme';
 import {MatCardModule} from '@angular/material/card';
 import {RouterModule} from '@angular/router';
 import {DetailComponent} from './detail/detail.component';
@@ -16,10 +16,20 @@ import {AboutComponent} from './about/about.component';
 import {ReviewComponent} from './review/review.component';
 import {MatListModule} from '@angular/material/list';
 import {MealCardComponent} from './meal-card/meal-card.component';
+import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, MainComponent, DetailComponent, HeaderComponent, AboutComponent, ReviewComponent, MealCardComponent],
+  declarations: [
+    HomeComponent,
+    MainComponent,
+    DetailComponent,
+    HeaderComponent,
+    AboutComponent,
+    ReviewComponent,
+    MealCardComponent,
+    CartDialogComponent,
+  ],
   imports: [
     CommonModule,
     HomeRoutingModule,
@@ -32,11 +42,14 @@ import {MealCardComponent} from './meal-card/meal-card.component';
     MatSelectModule,
     NbListModule,
     MatInputModule,
-    MatListModule
+    MatListModule,
+    NbMenuModule,
+    NbDialogModule.forChild(),
   ],
-  exports: [
-    HeaderComponent,
-  ]
+  entryComponents: [
+    CartDialogComponent,
+  ],
+
 })
 export class HomeModule {
 }

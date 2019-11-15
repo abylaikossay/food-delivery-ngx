@@ -1,5 +1,4 @@
 <ngx-header></ngx-header>
-<div class="container">
 <div class="row">
     <div class="food-navigation">
       <nb-card style="width: 99%;">
@@ -26,44 +25,34 @@
     <div class="food-list">
       <nb-card>
         <nb-card-header>
-          Products
+          {{ categoryName }}
         </nb-card-header>
         <nb-card-body>
+          <h1 *ngIf="noMeals">No products in cush category</h1>
           <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6" *ngFor="let meal of meals" style="padding-bottom: 30px;">
-              <mat-card>
-                <a class="disabled" class='no-underline' [routerLink]="'/home/' + meal.id">
-                  <mat-card-header style="height:65px;">
-                    <mat-card-title style="color: #673ab7 !important; ">{{meal.title}}</mat-card-title>
-                  </mat-card-header>
-                  <img *ngIf="meal.category.id === 1"
-                       src="http://primebeef.ru/images/cms/data/img_3911.jpg"
-                       mat-card-image alt="">
-                  <img *ngIf="meal.category.id === 2"
-                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnKkiEIaIpc03qY8j9kDMMJtqT4YGpYUaIUwKe4Eqv9O9ucI_S"
-                       mat-card-image alt="">
-                </a>
-                <mat-card-actions>
-                  <h5 style="padding-left: 10px;">Price: ${{meal.price}}</h5>
-                  <button *ngIf="productNotAdded" mat-raised-button class='addToCartBtn' (click)="addToCart($event, meal.id)" color="primary">
-                    Add to card
-                  </button>
-                  <div class="example-button-row" *ngIf="productAdded">
-                    <button mat-mini-fab class="redBtn" (click)="decreaseAmount()">-</button>
-                    <span><strong> {{ amount }} </strong></span>
-                    <button mat-mini-fab class="greenBtn" (click)="increaseAmount()">+</button>
-                  </div>
-                </mat-card-actions>
-              </mat-card>
-            </div>
+            <ngx-meal-card *ngFor="let meal of meals" [meal]="meal" style="padding-bottom: 30px;" class="col-lg-4 col-md-4 col-sm-6">
+            </ngx-meal-card>
           </div>
         </nb-card-body>
       </nb-card>
 
     </div>
     </div>
+<nb-card class="cart-bottom" *ngIf ='productsAddedToCart'>
+  <nb-card-body>
+  <div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-2">
+      <i class="fas fa-shopping-cart fa-2x"></i>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-7">
+      <span class="amount-text">Your order amount </span> <span><strong class="totalPrice">${{totalPrice}}</strong></span>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+      <button nbButton status="success" (click)="goToCart(addedProducts)">Go to cart &nbsp;<i class="fas fa-arrow-right"></i></button>
+    </div>
   </div>
-
+  </nb-card-body>
+</nb-card>
 <ng-template #categoryModal let-data let-ref="dialogRef">
   <nb-card>
     <nb-card-header>{{ data.e.title }}</nb-card-header>

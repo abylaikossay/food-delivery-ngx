@@ -12,7 +12,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .food-navigation {
     width: 30%;
     min-width: 30%;
@@ -44,3 +44,25 @@ nb-list-item:hover {
   font-size: 110%;
   font-weight: bold;
 }
+.cart-bottom {
+  bottom: 0;
+  position: sticky;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #c7bfd2;
+}
+.orderAmount {
+  font-size: x-large;
+  padding-top: 8px;
+}
+@media (min-width: 320px) {
+  .food-navigation {
+    width: 100%;
+    min-width: 100%;
+  }
+  .food-list {
+    width: 100%;
+    min-width: 100%;
+  }
+  }
+

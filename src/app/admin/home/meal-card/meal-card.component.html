@@ -1,1 +1,25 @@
-<p>meal-card works!</p>
+<mat-card>
+  <a class="disabled" class='no-underline' [routerLink]="'/home/' + meal.id">
+    <mat-card-header style="height:65px;">
+      <mat-card-title style="color: #673ab7 !important; ">{{meal.title}}</mat-card-title>
+    </mat-card-header>
+    <img *ngIf="meal.category.id === 1"
+         src="http://primebeef.ru/images/cms/data/img_3911.jpg"
+         mat-card-image alt="">
+    <img *ngIf="meal.category.id === 2"
+         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnKkiEIaIpc03qY8j9kDMMJtqT4YGpYUaIUwKe4Eqv9O9ucI_S"
+         mat-card-image alt="">
+  </a>
+  <mat-card-actions>
+    <h5 style="padding-left: 10px;">Price: ${{meal.price}}</h5>
+    <button *ngIf="productNotAdded" mat-raised-button class='addToCartBtn' (click)="addToCart(meal, amount)"
+            color="primary">
+      Add to card
+    </button>
+    <div class="example-button-row" *ngIf="productAdded">
+      <button mat-mini-fab class="redBtn" (click)="decreaseAmount(amount)">-</button>
+      <span style="margin-left: 33%;"><strong> {{ amount }} </strong></span>
+      <button mat-mini-fab class="greenBtn" (click)="increaseAmount(amount)">+</button>
+    </div>
+  </mat-card-actions>
+</mat-card>
