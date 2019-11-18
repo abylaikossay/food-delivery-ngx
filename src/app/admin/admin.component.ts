@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['admin.component.scss'],
   template: `
     <ngx-one-column-layout>
-      <nb-menu [items]="menu"></nb-menu>
+<!--      <nb-menu [items]="menu"></nb-menu>-->
       <router-outlet></router-outlet>
     </ngx-one-column-layout>
   `,

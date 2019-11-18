@@ -16,10 +16,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.analytics.trackPageViews();
-    if (!localStorage.getItem('apiToken')) {
-      this.router.navigate(['auth/login']);
-    } else {
-      console.log('You are authorised');
-    }
+    // if (!localStorage.getItem('apiToken')) {
+    //   this.router.navigate(['auth/login']);
+    // } else {
+    //   console.log('You are authorised');
+    // }
   }
 }
