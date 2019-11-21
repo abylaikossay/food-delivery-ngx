@@ -1,8 +1,8 @@
 <div class="header-container">
   <div class="logo-container">
-    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
-      <nb-icon icon="menu-2-outline"></nb-icon>
-    </a>
+<!--    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">-->
+<!--      <nb-icon icon="menu-2-outline"></nb-icon>-->
+<!--    </a>-->
     <a class="logo" href="#" (click)="navigateHome()">Smart Plaza<span></span></a>
   </div>
 <!--  <nb-select [selected]="currentTheme" (selectedChange)="changeTheme($event)" status="primary">-->
@@ -17,7 +17,9 @@
 <!--      <nb-search type="rotate-layout"></nb-search>-->
 <!--    </nb-action>-->
 <!--    <nb-action class="control-item" icon="email-outline"></nb-action>-->
-    <nb-action class="control-item" [nbContextMenu]="meals" icon="shopping-cart-outline"></nb-action>
+    <nb-action class="control-item" (click)="navigateHome()" icon="home"></nb-action>
+    <nb-action class="control-item" (click)="navigateShop()" icon="shopping-cart"></nb-action>
+<!--    <nb-action class="control-item" [nbContextMenu]="meals" icon="shopping-cart-outline"></nb-action>-->
     <nb-action class="user-action"  *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"

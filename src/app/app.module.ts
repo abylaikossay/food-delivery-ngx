@@ -20,6 +20,8 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MDBBootstrapModule} from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +30,8 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-
+    NgbModule,
+    MDBBootstrapModule.forRoot(),
     ThemeModule.forRoot(),
 
     NbSidebarModule.forRoot(),

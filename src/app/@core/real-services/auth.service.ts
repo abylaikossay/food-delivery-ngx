@@ -35,7 +35,7 @@ export class AuthService {
     localStorage.setItem(environment.roleName, payload.scopes.authority);
     this.toastrService.success('Успешно авторизован');
       setTimeout(() => {
-        this.router.navigate(['home']);
+        this.router.navigate(['info']);
       }, 1500);
   }
 

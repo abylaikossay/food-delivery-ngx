@@ -17,7 +17,7 @@ import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
     AdminComponent,
   ],
   exports: [
-  ]
+  ],
 })
 export class AdminModule {
 }

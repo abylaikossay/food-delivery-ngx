@@ -19,13 +19,18 @@ const routes: Routes = [
         .then(m => m.MiscellaneousModule),
     },
     {
-      path: 'home',
+      path: 'shop',
       loadChildren: () => import('./home/home.module')
         .then(m => m.HomeModule),
     },
     {
+      path: 'info',
+      loadChildren: () => import('./restaurant/restaurant.module')
+        .then(m => m.RestaurantModule),
+    },
+    {
       path: '',
-      redirectTo: 'home',
+      redirectTo: 'shop',
       pathMatch: 'full',
     },
     {

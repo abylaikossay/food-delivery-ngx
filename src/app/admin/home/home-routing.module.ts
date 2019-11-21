@@ -17,11 +17,11 @@ const routes: Routes = [
         component: MainComponent,
       },
       {
-        path:'about',
+        path: 'about',
         component: AboutComponent,
       },
       {
-        path:'review',
+        path: 'review',
         component: ReviewComponent,
       },
       {
@@ -29,11 +29,11 @@ const routes: Routes = [
         component: DetailComponent,
       },
     ],
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class HomeRoutingModule { }

@@ -11,13 +11,13 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    if (this.router.url === '/home') {
+    if (this.router.url === '/shop') {
       const homeBtn = document.getElementById('homeBtn');
       homeBtn.classList.add('mat-raised-button');
-    } else if (this.router.url === '/home/about') {
+    } else if (this.router.url === '/shop/about') {
       const aboutBtn = document.getElementById('aboutBtn');
       aboutBtn.classList.add('mat-raised-button');
-    } else if (this.router.url === '/home/review') {
+    } else if (this.router.url === '/shop/review') {
       const reviewBtn = document.getElementById('reviewBtn');
       reviewBtn.classList.add('mat-raised-button');
 
