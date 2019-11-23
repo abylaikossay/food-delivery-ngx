@@ -5,7 +5,7 @@ import { RestaurantRoutingModule } from './restaurant-routing.module';
 import { RestaurantComponent } from './restaurant.component';
 import {RouterModule} from '@angular/router';
 import { MainComponent } from './main/main.component';
-import {NbButtonModule, NbCardModule} from '@nebular/theme';
+import {NbButtonModule, NbCardModule, NbIconModule} from '@nebular/theme';
 import {MatButtonModule} from '@angular/material/button';
 import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 import {CarouselModule, WavesModule} from 'angular-bootstrap-md';
@@ -18,6 +18,7 @@ import {CarouselModule, WavesModule} from 'angular-bootstrap-md';
     RestaurantRoutingModule,
     CarouselModule,
     WavesModule,
+    NbIconModule,
     RouterModule,
     NbCardModule,
     MatButtonModule,

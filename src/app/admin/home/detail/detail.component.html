@@ -5,12 +5,12 @@
 </div>
 <div *ngIf="!!meal">
   <div class="container-fluid">
-    <div class="container">
+    <div class="container d-flex justify-content-center align-items-center">
       <h1>{{meal.title}}</h1>
     </div>
   </div>
 </div>
 
 <div *ngIf="noMeal">
-  <h1>No Such a meal Return <strong>Home</strong></h1>
+  <h3>No Such a meal Return <strong style="color: blue; text-decoration: underline;" [routerLink]="['/shop']">Shop</strong></h3>
 </div>

@@ -8,7 +8,7 @@ import {mergeMap} from 'rxjs/operators';
 @Component({
   selector: 'ngx-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.scss']
+  styleUrls: ['./detail.component.scss'],
 })
 export class DetailComponent implements OnInit {
   meal: unknown;
@@ -24,6 +24,7 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.pipe(
       mergeMap( res => {
+        console.log(res);
         this.mealId = +res['id'];
         return this.mealService.getMealById(this.mealId);
       }),
