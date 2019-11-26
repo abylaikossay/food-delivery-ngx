@@ -37,7 +37,7 @@ export class MainComponent implements OnInit {
     this.sendMealService.getCartShow().subscribe( data => {
       this.productsAddedToCart = data.productsAdded;
     });
-
+    // this.sendMealService.getMealArray()
     this.subscription = this.sendMealService.getMealData().subscribe(data => {
       console.log(data);
       this.totalPrice = data.meal.price;

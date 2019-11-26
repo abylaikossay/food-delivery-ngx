@@ -5,8 +5,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./one-column.layout.scss'],
   template: `
     <nb-layout windowMode>
-      <nb-layout-header fixed>
-        <ngx-header></ngx-header>
+      <nb-layout-header fixed style="margin-left: -20px; margin-right: -20px; background-color: rebeccapurple;">
+<!--        <ngx-header></ngx-header>-->
+          <ngx-new-header style="width: 100%;"></ngx-new-header>
       </nb-layout-header>
 
 <!--      <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>-->
@@ -17,9 +18,9 @@ import { Component } from '@angular/core';
         <ng-content select="router-outlet"></ng-content>
       </nb-layout-column>
 
-<!--      <nb-layout-footer fixed>-->
-<!--        <ngx-footer></ngx-footer>-->
-<!--      </nb-layout-footer>-->
+      <nb-layout-footer fixed>
+        <ngx-footer></ngx-footer>
+      </nb-layout-footer>
     </nb-layout>
   `,
 })

@@ -28,6 +28,7 @@ export class MealCardComponent implements OnInit {
     this.productAdded = true;
     this.sendMealService.sendCartShow(true);
     this.sendMealService.sendMeal(meal);
+    // this.sendMealService.pushMeal(meal);
     this.sendMealService.sendMealAmount(amount);
     this.toastrService.success('Product successfully added to cart!');
   }

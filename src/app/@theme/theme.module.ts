@@ -39,6 +39,9 @@ import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
+import { NewHeaderComponent } from './components/new-header/new-header.component';
+import {RouterModule} from '@angular/router';
+import {ButtonsModule, IconsModule, NavbarModule, WavesModule} from 'angular-bootstrap-md';
 
 const NB_MODULES = [
   NbLayoutModule,
@@ -50,12 +53,18 @@ const NB_MODULES = [
   NbContextMenuModule,
   NbSecurityModule,
   NbButtonModule,
+  RouterModule,
+  IconsModule,
+  NavbarModule,
+  WavesModule,
+  ButtonsModule,
   NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
 ];
 const COMPONENTS = [
   HeaderComponent,
+  NewHeaderComponent,
   FooterComponent,
   SearchInputComponent,
   TinyMCEComponent,

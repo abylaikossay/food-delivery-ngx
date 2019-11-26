@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   meals = [
     { title: 'Your Cart is Empty' },
   ];
+  somesome: boolean = false;
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;

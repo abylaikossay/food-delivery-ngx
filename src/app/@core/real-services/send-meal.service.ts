@@ -9,6 +9,7 @@ import {Meal} from '../models/meal';
 })
 export class SendMealService {
   private mealSubject = new Subject<any>();
+  private mealArray = new Array<any>();
   private cartShowSubject = new Subject<any>();
   private mealAmountSubject = new Subject<any>();
 
@@ -17,6 +18,9 @@ export class SendMealService {
     this.mealSubject.next({
       meal: data,
     });
+  }
+  pushMeal(data: Meal) {
+    this.mealArray.push(data);
   }
   sendCartShow(added: boolean) {
     this.cartShowSubject.next( {
@@ -37,11 +41,6 @@ export class SendMealService {
       amount: 0,
     });
   }
-
-
-
-
-
   getCartShow(): Observable<any> {
     return this.cartShowSubject.asObservable();
   }
