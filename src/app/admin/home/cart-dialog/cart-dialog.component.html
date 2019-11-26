@@ -1,6 +1,12 @@
 <nb-card>
-  <nb-card-header>{{ meal.title }}</nb-card-header>
+  <nb-card-header>CARD</nb-card-header>
   <nb-card-body>
+    <ul>
+      <li *ngFor="let meal of meals">
+        {{meal.title}}
+        QUANTITY: {{meal.quantity}}
+      </li>
+    </ul>
 
   </nb-card-body>
   <nb-card-footer>

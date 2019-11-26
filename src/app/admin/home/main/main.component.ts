@@ -17,7 +17,6 @@ import {CartDialogComponent} from '../cart-dialog/cart-dialog.component';
 export class MainComponent implements OnInit {
   meals: Meal[] = [];
   categories: Category[] = [];
-  amount: number = 1;
   totalPrice: number;
   noMeals: boolean = false;
   categoryName: string = 'All Categories';
@@ -37,18 +36,9 @@ export class MainComponent implements OnInit {
     this.sendMealService.getCartShow().subscribe( data => {
       this.productsAddedToCart = data.productsAdded;
     });
-    // this.sendMealService.getMealArray()
-    this.subscription = this.sendMealService.getMealData().subscribe(data => {
-      console.log(data);
-      this.totalPrice = data.meal.price;
-        this.sendMealService.getMealAmount().subscribe( perf => {
-          this.amount = perf.amount;
-          data.meal.quantity = this.amount;
-          this.totalPrice = perf.amount * data.meal.price;
-        }, error => {
-          console.log(error);
-        });
-        this.addedProducts = data.meal;
+    this.subscription = this.sendMealService.mealSumAndSums.subscribe(value => {
+      this.addedProducts = value.meals;
+      this.totalPrice = value.sum;
     });
   }
   fetchAll() {
@@ -66,23 +56,17 @@ export class MainComponent implements OnInit {
         this.categoryName = resp.name;
       });
       console.log(perf);
-      if (perf.length === 0) {
-        this.noMeals = true;
-      } else {
-        this.noMeals = false;
-      }
-      // this.categoryName = perf.category.name;
-      // @ts-ignore
+      this.noMeals = perf.length === 0;
       this.meals = perf;
     });
   }
-  goToCart(meal) {
+  goToCart(meal, totalPrice) {
     this.dialogService.open(CartDialogComponent, {
       context: {
-        meal: meal,
+        meals: meal,
+        totalPrice: totalPrice,
       },
     });
-console.log(meal);
   }
 
 

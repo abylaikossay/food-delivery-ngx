@@ -8,14 +8,16 @@ import {Meal} from '../../../@core/models/meal';
   styleUrls: ['./cart-dialog.component.scss'],
 })
 export class CartDialogComponent implements OnInit {
-  @Input() meal: Meal;
+  @Input() meals: Meal[];
+  @Input() totalPrice: number;
 
   constructor(protected ref: NbDialogRef<CartDialogComponent>,
   ) {
   }
 
   ngOnInit() {
-    console.log(this.meal);
+    console.log(this.meals);
+    console.log(this.totalPrice);
   }
 
   dismiss() {

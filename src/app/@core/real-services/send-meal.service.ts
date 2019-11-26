@@ -1,55 +1,70 @@
-import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs';
-import {Pagination} from '../models/pagination/pagination';
-import {Meal} from '../models/meal';
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { Pagination } from '../models/pagination/pagination';
+import { Meal } from '../models/meal';
 
 
 @Injectable({
-  providedIn: 'root',
+    providedIn: 'root',
 })
 export class SendMealService {
-  private mealSubject = new Subject<any>();
-  private mealArray = new Array<any>();
-  private cartShowSubject = new Subject<any>();
-  private mealAmountSubject = new Subject<any>();
+    private mealArray = new Array<any>();
+    private cartShowSubject = new Subject<any>();
+    readonly mealSumAndSums = new Subject<any>();
 
+    pushMeal(data: Meal) {
+        this.mealArray.push(data);
+        this.mealSumAndSums.next(this.getMealSumAndSums());
+    }
+    getMealSumAndSums() {
+        const mealSumsAndSums = {} as any;
+        mealSumsAndSums.sum = this.calculateSum();
+        mealSumsAndSums.meals = this.mealArray;
+        return mealSumsAndSums;
+    }
+    calculateSum() {
+        let mealSum = 0;
+        const mealSums = this.mealArray.map(value => {
+            value.totalPrice =  value.price * value.quantity;
+            return value.totalPrice;
+        });
+        mealSums.forEach( value => {
+            mealSum += value;
+        });
+        return mealSum;
+    }
 
-  sendMeal(data: Meal) {
-    this.mealSubject.next({
-      meal: data,
-    });
-  }
-  pushMeal(data: Meal) {
-    this.mealArray.push(data);
-  }
-  sendCartShow(added: boolean) {
-    this.cartShowSubject.next( {
-      productsAdded: added,
-    });
-  }
-  sendMealAmount(amount: number) {
-    this.mealAmountSubject.next( {amount: amount});
-  }
+    changeMealQuantity(data: Meal, isDeleted?: boolean) {
+        let arrayIndex;
+        this.mealArray.forEach((value, index) => {
+            if (value.id === data.id) {
+                value.quantity = data.quantity;
+                arrayIndex = index;
+            }
+        });
+        if (isDeleted) {
+            this.mealArray.splice(arrayIndex, 1);
+        }
+        if (this.mealArray.length === 0) {
+            this.clearData();
+        }
+        this.mealSumAndSums.next(this.getMealSumAndSums());
+    }
 
+    sendCartShow(added: boolean) {
+        this.cartShowSubject.next({
+            productsAdded: added,
+        });
+    }
 
+    clearData() {
+        this.sendCartShow(false);
+    }
 
-  clearData() {
-    this.mealSubject.next({
-      meal: {},
-    });
-    this.mealAmountSubject.next({
-      amount: 0,
-    });
-  }
-  getCartShow(): Observable<any> {
-    return this.cartShowSubject.asObservable();
-  }
-  getMealAmount(): Observable<any> {
-    return this.mealAmountSubject.asObservable();
-  }
-  getMealData(): Observable<any> {
-    return this.mealSubject.asObservable();
-  }
-  constructor() {
-  }
+    getCartShow(): Observable<any> {
+        return this.cartShowSubject.asObservable();
+    }
+
+    constructor() {
+    }
 }
