@@ -25,11 +25,12 @@ export class DetailComponent implements OnInit {
     this.route.params.pipe(
       mergeMap( res => {
         console.log(res);
-        this.mealId = +res['id'];
+        this.mealId = +res.id;
         return this.mealService.getMealById(this.mealId);
       }),
       mergeMap(resp => {
         this.meal = resp;
+        console.log(this.meal);
         return this.mealService.getMealById(this.mealId);
       }),
     ).subscribe( res => {

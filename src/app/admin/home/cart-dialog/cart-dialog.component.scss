@@ -1,0 +1,41 @@
+.meal-price {
+  color: #9b9b9b ;
+}
+.meal-total-price {
+  color: black;
+  font-weight: bold;
+}
+
+.cart-meal-card-price {
+  padding: 10px;
+}
+.meal-cards {
+  margin-bottom: 0.875rem;
+}
+.plus-button {
+  color: green;
+}
+.minus-button {
+  color: red;
+}
+.total-cost {
+  position: absolute;
+  right: 25px;
+}
+.meal-card-header {
+  color: rebeccapurple;
+}
+.col-xs-6 {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+.total-card {
+  background-color: #fffff9 !important;
+}
+.order-total-cost {
+  font-weight: bold;
+  font-size: large;
+}
+mat-dialog-actions {
+  display: contents;
+}

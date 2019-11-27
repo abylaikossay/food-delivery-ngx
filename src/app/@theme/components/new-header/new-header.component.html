@@ -1,20 +1,68 @@
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="width: 100%;">
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar"
+     style="width: 100%;">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/info']" >Canada<small>Delivery</small></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" [routerLink]="['/info']">Canada<small>Delivery</small></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+            aria-controls="ftco-nav"
+            aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i> Menu
     </button>
-<!--    <button class="navbar-toggler" [routerLink]="['/shop']">-->
-<!--      <i class="fa fa-shopping-cart"></i> Shop-->
-<!--    </button>-->
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a [routerLink]="['/info']" class="nav-link"><i class="fa fa-home"></i> Home</a></li>
-        <li class="nav-item"><a [routerLink]="['/shop']" class="nav-link"><i class="fa fa-shopping-cart"></i> Shop</a></li>
-<!--        <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>-->
-<!--        <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>-->
-<!--        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>-->
+        <li class="nav-item"><a [routerLink]="['/shop']" class="nav-link"><i class="fa fa-shopping-cart"></i> Shop</a>
+        </li>
+        <li class="nav-item d-inline-block" ngbDropdown>
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user"></i> Profile</a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="background-color: white !important;">
+            <button class="nav-link" style="background-color: white !important;color: black !important;"
+                    ngbDropdownItem [routerLink]="['/profile']">Profile
+            </button>
+            <button class="nav-link" style="background-color: white !important;color: black !important;"
+                    ngbDropdownItem [routerLink]="['/auth/login']">Logout
+            </button>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+
+<!--<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark purple" [containerInside]="true">-->
+<!--  <mdb-navbar-brand>-->
+<!--    <a class="navbar-brand" (click)="activeBtn()" [routerLink]="['/info']">-->
+<!--      <img src="https://enterpriseengineeringnetwork.org/images/restaurant-logo-png-16.png" height="30"-->
+<!--           class="d-inline-block align-top" alt="">-->
+<!--      CanadaDelivery-->
+<!--    </a>-->
+<!--  </mdb-navbar-brand>-->
+<!--  <links>-->
+
+<!--    &lt;!&ndash; Links &ndash;&gt;-->
+<!--    <ul class="navbar-nav ml-auto">-->
+<!--      <li class="nav-item" id="infoBtn">-->
+<!--        <a [routerLink]="['/info']" (click)="activeBtn()" class="nav-link waves-light" mdbWavesEffect>-->
+<!--          <mdb-icon fas icon="home"></mdb-icon>-->
+<!--          Contact<span class="sr-only">(current)</span></a>-->
+<!--      </li>-->
+<!--      <li class="nav-item" id="shopBtn">-->
+<!--        <a class="nav-link waves-light" (click)="activeBtn()" [routerLink]="['/shop']" mdbWavesEffect>-->
+<!--          <mdb-icon fas icon="shopping-cart"></mdb-icon>-->
+<!--          Shop</a>-->
+<!--      </li>-->
+
+<!--      &lt;!&ndash; Dropdown &ndash;&gt;-->
+<!--      <li class="nav-item dropdown" id="profileBtn" dropdown>-->
+<!--        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>-->
+<!--          <mdb-icon fas icon="user"></mdb-icon>-->
+<!--          Profile<span class="caret"></span></a>-->
+<!--        <div *dropdownMenu role="menu" class="dropdown-menu dropdown-menu-right dropdown dropdown-primary">-->
+<!--          <a class="dropdown-item waves-light" mdbWavesEffect (click)="activeBtn()" [routerLink]="['/profile']">My account</a>-->
+<!--          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/auth/login']">Log out</a>-->
+<!--        </div>-->
+<!--      </li>-->
+
+<!--    </ul>-->
+<!--    &lt;!&ndash; Links &ndash;&gt;-->
+<!--  </links>-->
+<!--</mdb-navbar>-->

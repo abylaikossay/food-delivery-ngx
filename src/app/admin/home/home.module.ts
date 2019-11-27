@@ -17,6 +17,8 @@ import {ReviewComponent} from './review/review.component';
 import {MatListModule} from '@angular/material/list';
 import {MealCardComponent} from './meal-card/meal-card.component';
 import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -35,11 +37,13 @@ import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
     HomeRoutingModule,
     NbCardModule,
     MatCardModule,
+    MatIconModule,
     NbButtonModule,
     NbInputModule,
     RouterModule,
     MatButtonModule,
     MatSelectModule,
+    MatDialogModule,
     NbListModule,
     MatInputModule,
     MatListModule,

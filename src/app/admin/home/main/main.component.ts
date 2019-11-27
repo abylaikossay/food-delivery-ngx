@@ -8,6 +8,7 @@ import {Category} from '../../../@core/models/category';
 import {SendMealService} from '../../../@core/real-services/send-meal.service';
 import {Subscription} from 'rxjs';
 import {CartDialogComponent} from '../cart-dialog/cart-dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'ngx-main',
@@ -25,9 +26,10 @@ export class MainComponent implements OnInit {
   addedProducts: Meal[] = [];
   constructor(private mealService: MealService,
               private categoryService: CategoryService,
-              private dialogService: NbDialogService,
+              // private dialogService: NbDialogService,
               private router: Router,
               private sendMealService: SendMealService,
+              private matDialog: MatDialog,
   ) {
   }
 
@@ -42,6 +44,8 @@ export class MainComponent implements OnInit {
     });
   }
   fetchAll() {
+    this.categoryName = 'All Categories';
+    this.noMeals = false;
     this.mealService.getAll().subscribe(perf => {
       this.meals = perf;
     });
@@ -60,12 +64,17 @@ export class MainComponent implements OnInit {
       this.meals = perf;
     });
   }
-  goToCart(meal, totalPrice) {
-    this.dialogService.open(CartDialogComponent, {
-      context: {
-        meals: meal,
-        totalPrice: totalPrice,
-      },
+  goToCart(meal, totalPrice): void {
+    // this.dialogService.open(CartDialogComponent, {
+    //   context: {
+    //     meals: meal,
+    //     totalPrice: totalPrice,
+    //   },
+    // });
+    this.matDialog.open(CartDialogComponent, {
+      width: '1000px',
+      panelClass: 'cart-dialog-width',
+      data: {meals: meal, totalPrice: totalPrice},
     });
   }
 

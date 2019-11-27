@@ -11,7 +11,7 @@
          mat-card-image alt="">
   </a>
   <mat-card-actions>
-    <h5 style="padding-left: 10px;">Price: ${{meal.price}}</h5>
+    <h5 style="padding-left: 10px;">Price: {{meal.price | currency: 'USD': 'symbol-narrow'}}</h5>
     <button *ngIf="productNotAdded" mat-raised-button class='addToCartBtn' (click)="addToCart(meal)"
             color="primary">
       Add to card
