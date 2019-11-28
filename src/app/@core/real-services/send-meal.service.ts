@@ -11,6 +11,7 @@ export class SendMealService {
     private mealArray = new Array<any>();
     private cartShowSubject = new Subject<any>();
     readonly mealSumAndSums = new Subject<any>();
+    private mealRemovedSubject = new Subject<any>();
 
     pushMeal(data: Meal) {
         this.mealArray.push(data);
@@ -34,7 +35,7 @@ export class SendMealService {
         return mealSum;
     }
 
-    changeMealQuantity(data: Meal, isDeleted?: boolean) {
+    changeMealQuantity(data: Meal, isDeleted?: boolean, isRemoved?: boolean) {
         let arrayIndex;
         this.mealArray.forEach((value, index) => {
             if (value.id === data.id) {
@@ -45,17 +46,34 @@ export class SendMealService {
         if (isDeleted) {
             this.mealArray.splice(arrayIndex, 1);
         }
+        if (isRemoved) {
+          data.isAddedToCart = false;
+        }
         if (this.mealArray.length === 0) {
             this.clearData();
         }
         this.mealSumAndSums.next(this.getMealSumAndSums());
     }
+    // mealRemoved (isRemoved: boolean) {
+    //   return isRemoved;
+    // }
 
     sendCartShow(added: boolean) {
         this.cartShowSubject.next({
             productsAdded: added,
         });
     }
+    // mealRemoved (id, isRemoved: boolean) {
+    //   if (isRemoved) {
+    //     this.mealRemovedSubject.next({
+    //       removed: isRemoved,
+    //       id: id,
+    //     });
+    //   }
+    // }
+    // getMealRemoved(id): Observable<any> {
+    //   return this.mealRemovedSubject.asObservable();
+    // }
 
     clearData() {
         this.sendCartShow(false);

@@ -9,6 +9,9 @@ import {SendMealService} from '../../../@core/real-services/send-meal.service';
 import {Subscription} from 'rxjs';
 import {CartDialogComponent} from '../cart-dialog/cart-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {Browser} from 'leaflet';
+import win = Browser.win;
+import {main} from '@angular/compiler-cli/src/main';
 
 @Component({
   selector: 'ngx-main',
@@ -16,6 +19,7 @@ import {MatDialog} from '@angular/material/dialog';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  selectedItem = '1';
   meals: Meal[] = [];
   categories: Category[] = [];
   totalPrice: number;
@@ -32,8 +36,8 @@ export class MainComponent implements OnInit {
               private matDialog: MatDialog,
   ) {
   }
-
   ngOnInit() {
+    window.addEventListener('scroll', this.scroll, true);
     this.fetchAll();
     this.sendMealService.getCartShow().subscribe( data => {
       this.productsAddedToCart = data.productsAdded;
@@ -43,6 +47,20 @@ export class MainComponent implements OnInit {
       this.totalPrice = value.sum;
     });
   }
+  scroll() {
+    const selectFix = document.getElementById('categories-select');
+    const windowY = selectFix.getBoundingClientRect();
+    if ( selectFix.scrollHeight >= windowY.top) {
+      selectFix.classList.add('scrolled');
+    }
+    const foodList = document.getElementById('food-list');
+    // console.log(foodList.getBoundingClientRect());
+    const foodListY = foodList.getBoundingClientRect().top;
+    if (foodListY >= windowY.bottom) {
+      selectFix.classList.remove('scrolled');
+    }
+  }
+
   fetchAll() {
     this.categoryName = 'All Categories';
     this.noMeals = false;

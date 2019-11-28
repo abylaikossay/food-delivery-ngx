@@ -9,10 +9,8 @@ import {NbToastrService} from '@nebular/theme';
   styleUrls: ['./meal-card.component.scss'],
 })
 export class MealCardComponent implements OnInit {
-  productAdded: boolean = false;
-  productNotAdded: boolean = true;
-  addedMeals: Meal[] = [];
-  // amount: number = 1;
+  // addedMeals: Meal[] = [];
+
   @Input() meal: Meal;
   constructor(private sendMealService: SendMealService,
               private toastrService: NbToastrService,
@@ -23,8 +21,7 @@ export class MealCardComponent implements OnInit {
   }
 
   addToCart(meal) {
-    this.productNotAdded = false;
-    this.productAdded = true;
+    this.meal.isAddedToCart = true;
     this.sendMealService.sendCartShow(true);
     this.sendMealService.pushMeal(meal);
     this.toastrService.success('Product successfully added to cart!');
@@ -41,8 +38,7 @@ export class MealCardComponent implements OnInit {
       this.sendMealService.changeMealQuantity(this.meal);
     } else if (this.meal.quantity === 1) {
       this.sendMealService.changeMealQuantity(this.meal, true);
-      this.productNotAdded = true;
-      this.productAdded = false;
+      this.meal.isAddedToCart = false;
       this.toastrService.warning('Product has been removed from cart!');
     }
   }

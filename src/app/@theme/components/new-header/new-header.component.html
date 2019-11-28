@@ -12,16 +12,19 @@
         <li class="nav-item"><a [routerLink]="['/info']" class="nav-link"><i class="fa fa-home"></i> Home</a></li>
         <li class="nav-item"><a [routerLink]="['/shop']" class="nav-link"><i class="fa fa-shopping-cart"></i> Shop</a>
         </li>
-        <li class="nav-item d-inline-block" ngbDropdown>
-          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user"></i> Profile</a>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="background-color: white !important;">
-            <button class="nav-link" style="background-color: white !important;color: black !important;"
+        <li class="nav-item d-inline-block" *ngIf="authorized" ngbDropdown>
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user"></i> {{userName}}</a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="background-color: transparent !important;">
+            <button class="nav-link" style="background-color: rebeccapurple !important;color: white !important;"
                     ngbDropdownItem [routerLink]="['/profile']">Profile
             </button>
-            <button class="nav-link" style="background-color: white !important;color: black !important;"
-                    ngbDropdownItem [routerLink]="['/auth/login']">Logout
+            <button class="nav-link" style="background-color: rebeccapurple !important;color: white !important;"
+                    ngbDropdownItem [routerLink]="['/auth/logout']">Logout
             </button>
           </div>
+        </li>
+        <li class="nav-item" *ngIf="unauthorized">
+          <a class="nav-link" [routerLink]="['/auth/login']"><span class="nav-login">Login / Register</span></a>
         </li>
       </ul>
     </div>

@@ -12,6 +12,7 @@ export const environment = {
   production: false,
   apiUrl: 'http://46.101.175.38:8080',
   apiToken: 'apiToken',
+  userName: 'userName',
   tokenPrefix: 'Bearer ',
   roleName: 'role',
   defaultImg: '/api/files/no-image',

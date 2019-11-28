@@ -9,7 +9,7 @@ export class Meal {
   description: string;
   ingredients: string;
   isAddedBtn: boolean;
-  isAddetToCart: boolean;
+  isAddedToCart: boolean;
   price: number;
   quantity: number;
   tag: string;

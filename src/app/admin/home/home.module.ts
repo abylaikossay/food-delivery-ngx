@@ -4,7 +4,15 @@ import {CommonModule} from '@angular/common';
 import {HomeRoutingModule} from './home-routing.module';
 import {HomeComponent} from './home.component';
 import {MainComponent} from './main/main.component';
-import {NbButtonModule, NbCardModule, NbDialogModule, NbInputModule, NbListModule, NbMenuModule} from '@nebular/theme';
+import {
+  NbAlertModule,
+  NbButtonModule,
+  NbCardModule,
+  NbDialogModule,
+  NbInputModule,
+  NbListModule,
+  NbMenuModule, NbSelectModule,
+} from '@nebular/theme';
 import {MatCardModule} from '@angular/material/card';
 import {RouterModule} from '@angular/router';
 import {DetailComponent} from './detail/detail.component';
@@ -19,6 +27,7 @@ import {MealCardComponent} from './meal-card/meal-card.component';
 import { CartDialogComponent } from './cart-dialog/cart-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -37,8 +46,12 @@ import {MatIconModule} from '@angular/material/icon';
     HomeRoutingModule,
     NbCardModule,
     MatCardModule,
+    NbAlertModule,
     MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
     NbButtonModule,
+    NbSelectModule,
     NbInputModule,
     RouterModule,
     MatButtonModule,

@@ -31,9 +31,11 @@ export class AuthService {
     this.authorized.next(true);
     const token = perf;
     const payload = jwt_decode(token);
+    console.log(payload);
     localStorage.setItem(environment.apiToken, token);
     localStorage.setItem(environment.roleName, payload.scopes.authority);
-    this.toastrService.success('Успешно авторизован');
+    localStorage.setItem(environment.userName, payload.sub);
+    this.toastrService.success('Authorization Success');
       setTimeout(() => {
         this.router.navigate(['info']);
       }, 1500);
@@ -71,10 +73,10 @@ export class AuthService {
   isAuthorized() {
     if (!localStorage.getItem(environment.apiToken)) {
       return false;
-      console.log('не авторизован');
+      console.log('not authorized');
     } else {
       return true;
-      console.log('авторизован');
+      console.log('authorized');
     }
   }
 
@@ -102,7 +104,7 @@ export class AuthService {
   public logout() {
     this.authorized.next(false);
     localStorage.clear();
-    this.toastrService.info('Вы вышли из системы');
+    this.toastrService.info('You are unauthorized');
     this.router.navigate(['/login']);
   }
 

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'ngx-new-header',
@@ -8,11 +9,24 @@ import {Router} from '@angular/router';
 })
 export class NewHeaderComponent implements OnInit {
   isNavbarCollapsed = true;
+  authorized: boolean = false;
+  unauthorized: boolean = true;
+  userName: string = 'Profile';
   constructor(private router: Router,
   ) {
   }
 
   ngOnInit() {
+    console.log(localStorage.getItem(environment.apiToken));
+    if (localStorage.getItem(environment.apiToken)) {
+      this.authorized = true;
+      this.unauthorized = false;
+      console.log(localStorage.getItem(environment.userName));
+      this.userName = localStorage.getItem(environment.userName);
+    } else {
+      this.authorized = false;
+      this.unauthorized = true;
+    }
     // this.activeBtn();
   }
   // activeBtn () {

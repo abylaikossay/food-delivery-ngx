@@ -10,6 +10,7 @@ export const environment = {
   apiToken: 'apiToken',
   tokenPrefix: 'Bearer ',
   roleName: 'role',
+  userName: 'userName',
   defaultImg: '/api/files/no-image',
   fileUrl: '/api/files/get',
 };

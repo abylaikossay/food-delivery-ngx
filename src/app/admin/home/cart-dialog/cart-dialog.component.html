@@ -7,7 +7,7 @@
 </div>
 <mat-dialog-content>
   <div class="row">
-    <div class="col-md-6" style="overflow-y: scroll; height:700px;">
+    <div class="col-md-6" style="overflow-y: scroll; max-height:666px;">
       <ng-container *ngIf="meals.length === 0">
         <h1>No meals in your cart</h1>
       </ng-container>
@@ -20,8 +20,8 @@
         </nb-card-header>
         <nb-card-body>
           <div class="row cart-meal-card-price">
-            <div class="meal-price col-xs-3">{{meal.price | currency: 'USD': 'symbol-narrow'}}</div>
-            <div class="meal-quantity col-xs-6" style="margin-top: -10px;">
+            <div class="meal-price col-3">{{meal.price | currency: 'USD': 'symbol-narrow'}}</div>
+            <div class="meal-quantity col-6" style="margin-top: -10px;">
               <button mat-icon-button class="minus-button" (click)="decreaseAmount(meal)" color="primary">
                 <i class="fas fa-minus-square"></i>
               </button>
@@ -30,7 +30,7 @@
                 <i class="fas fa-plus-square"></i>
               </button>
             </div>
-            <div class="meal-total-price col-xs-3">
+            <div class="meal-total-price col-3">
               {{meal.price * meal.quantity | currency: 'USD': 'symbol-narrow'}}
             </div>
           </div>
@@ -44,8 +44,10 @@
           User Info
         </nb-card-header>
         <nb-card-body>
-          <label class="label">Address</label>
-          <input nbInput fullWidth placeholder="Please enter you address">
+          <form [formGroup]="checkoutForm">
+          <label class="label" for="address">Address</label>
+          <input formControlName="address" id="address" nbInput fullWidth placeholder="Please enter you address">
+          </form>
         </nb-card-body>
       </nb-card>
       <nb-card class="total-card">
@@ -66,9 +68,11 @@
             <span class>Total:</span>
             <span class="total-cost">{{totalPriceWithShip.toFixed(2)}}</span>
           </div>
+          <br><br>
+          <nb-alert *ngIf="totalPriceWithShip <= 20" status="danger" closable>No products in your Cart</nb-alert>
         </nb-card-body>
         <nb-card-footer>
-          <button nbButton  fullWidth status="success">Go to checkout &nbsp; <i class="fa fa-arrow-right"></i></button>
+          <button nbButton [disabled]="noProducts || !checkoutForm.valid" fullWidth status="success" (click)="productChecout(meals, totalPriceWithShip)">Go to checkout &nbsp; <i class="fa fa-arrow-right"></i></button>
         </nb-card-footer>
       </nb-card>
     </div>

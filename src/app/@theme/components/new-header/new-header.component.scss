@@ -9263,3 +9263,17 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+.navbar-collapse {
+  background-color: rebeccapurple !important;
+  margin-left: -18px !important;
+  margin-right: -42px !important;
+}
+.navbar-nav {
+  padding-left: 30px !important;
+}
+.nav-login {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  font-weight: bold;
+  text-transform: uppercase;
+}

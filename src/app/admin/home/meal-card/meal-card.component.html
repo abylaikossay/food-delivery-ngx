@@ -12,14 +12,22 @@
   </a>
   <mat-card-actions>
     <h5 style="padding-left: 10px;">Price: {{meal.price | currency: 'USD': 'symbol-narrow'}}</h5>
-    <button *ngIf="productNotAdded" mat-raised-button class='addToCartBtn' (click)="addToCart(meal)"
+    <button *ngIf="meal.isAddedToCart === false" mat-raised-button class='addToCartBtn' (click)="addToCart(meal)"
             color="primary">
       Add to card
     </button>
-    <div class="example-button-row" *ngIf="productAdded">
-      <button mat-mini-fab class="redBtn" (click)="decreaseAmount()">-</button>
-      <span style="margin-left: 33%;"><strong> {{ meal.quantity }} </strong></span>
-      <button mat-mini-fab class="greenBtn" (click)="increaseAmount()">+</button>
+    <div class="example-button-row" *ngIf="meal.isAddedToCart === true">
+      <div class="row">
+        <div class="col-5">
+          <button mat-mini-fab class="redBtn" (click)="decreaseAmount()">-</button>
+        </div>
+        <div class="col-4" style="margin-top: 10px;">
+          <span class="meal-selected-amount">{{ meal.quantity }}</span>
+        </div>
+        <div class="col-3">
+          <button mat-mini-fab class="greenBtn" (click)="increaseAmount()">+</button>
+        </div>
+      </div>
     </div>
   </mat-card-actions>
 </mat-card>
