@@ -17,11 +17,9 @@ export class NewHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(localStorage.getItem(environment.apiToken));
     if (localStorage.getItem(environment.apiToken)) {
       this.authorized = true;
       this.unauthorized = false;
-      console.log(localStorage.getItem(environment.userName));
       this.userName = localStorage.getItem(environment.userName);
     } else {
       this.authorized = false;

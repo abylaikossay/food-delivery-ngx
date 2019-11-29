@@ -20,9 +20,9 @@ export class AdminComponent implements  OnInit {
   }
   menu = MENU_ITEMS;
   ngOnInit(): void {
-      if (localStorage.getItem(environment.roleName) !== 'ROLE_ADMIN') {
-        console.log('Зашел Не Админ');
-        this.router.navigate(['smart-module']);
-      }
+      // if (localStorage.getItem(environment.roleName) !== 'ROLE_ADMIN') {
+      //   console.log('Зашел Не Админ');
+      //   this.router.navigate(['smart-module']);
+      // }
     }
 }

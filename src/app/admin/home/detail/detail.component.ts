@@ -24,17 +24,14 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.pipe(
       mergeMap( res => {
-        console.log(res);
         this.mealId = +res.id;
         return this.mealService.getMealById(this.mealId);
       }),
       mergeMap(resp => {
         this.meal = resp;
-        console.log(this.meal);
         return this.mealService.getMealById(this.mealId);
       }),
     ).subscribe( res => {
-      console.log( res);
     }, err => {
       console.log(err);
       this.noMeal = true;

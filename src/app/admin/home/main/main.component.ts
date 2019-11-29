@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef, OnDestroy} from '@angular/core';
 import {MealService} from '../../../@core/real-services/meal.service';
 import {NbDialogService} from '@nebular/theme';
 import {Meal} from '../../../@core/models/meal';
@@ -18,7 +18,7 @@ import {main} from '@angular/compiler-cli/src/main';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   selectedItem = '1';
   meals: Meal[] = [];
   categories: Category[] = [];
@@ -28,6 +28,7 @@ export class MainComponent implements OnInit {
   subscription: Subscription;
   productsAddedToCart: boolean = false;
   addedProducts: Meal[] = [];
+
   constructor(private mealService: MealService,
               private categoryService: CategoryService,
               // private dialogService: NbDialogService,
@@ -36,10 +37,12 @@ export class MainComponent implements OnInit {
               private matDialog: MatDialog,
   ) {
   }
+
   ngOnInit() {
-    window.addEventListener('scroll', this.scroll, true);
+    // window.addEventListener('scroll', this.scroll, true);
+    document.addEventListener('scroll', MainComponent.scroll, true);
     this.fetchAll();
-    this.sendMealService.getCartShow().subscribe( data => {
+    this.sendMealService.getCartShow().subscribe(data => {
       this.productsAddedToCart = data.productsAdded;
     });
     this.subscription = this.sendMealService.mealSumAndSums.subscribe(value => {
@@ -47,10 +50,13 @@ export class MainComponent implements OnInit {
       this.totalPrice = value.sum;
     });
   }
-  scroll() {
+  ngOnDestroy(): void {
+    document.removeEventListener('scroll', MainComponent.scroll, true);
+  }
+  private static scroll() {
     const selectFix = document.getElementById('categories-select');
     const windowY = selectFix.getBoundingClientRect();
-    if ( selectFix.scrollHeight >= windowY.top) {
+    if (selectFix.scrollHeight >= windowY.top) {
       selectFix.classList.add('scrolled');
     }
     const foodList = document.getElementById('food-list');
@@ -71,6 +77,7 @@ export class MainComponent implements OnInit {
       this.categories = perf;
     });
   }
+
   changeCategory(id) {
     this.mealService.getMealByCategory(id).subscribe(perf => {
       this.categoryService.getCategoryById(id).subscribe(resp => {
@@ -82,6 +89,7 @@ export class MainComponent implements OnInit {
       this.meals = perf;
     });
   }
+
   goToCart(meal, totalPrice): void {
     // this.dialogService.open(CartDialogComponent, {
     //   context: {

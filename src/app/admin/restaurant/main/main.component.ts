@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CategoryService} from '../../../@core/real-services/category.service';
+import {MealService} from '../../../@core/real-services/meal.service';
+import {Category} from '../../../@core/models/category';
+import {Meal} from '../../../@core/models/meal';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-main',
@@ -6,10 +11,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  constructor() { }
+  categories: Category[] = [];
+  meals: Meal[] = [];
+
+  constructor(private categoryService: CategoryService,
+              private mealService: MealService,
+              private router: Router,
+  ) {
+  }
 
   ngOnInit() {
+    this.categoryService.getAll().subscribe( data => {
+      this.categories = data;
+    });
+    this.fetchAll();
+  }
+  fetchAll() {
+    this.mealService.getAll().subscribe( data => {
+      this.meals = data;
+    });
+  }
+  getMealByCategory(id) {
+    this.mealService.getMealByCategory(id).subscribe( data => {
+      this.meals = data;
+    });
+  }
+  goToMeal(id) {
+    console.log(id);
+    this.router.navigate(['/shop/' + id]);
   }
 
 }

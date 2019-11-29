@@ -3542,9 +3542,9 @@ input[type="button"].btn-block {
   color: rgba(0, 0, 0, 0.9); }
 
 .navbar-dark .navbar-brand {
-  color: #fff; }
+  color: black; }
 .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
-  color: #fff; }
+  color: black; }
 
 .navbar-dark .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.5); }
@@ -7297,22 +7297,22 @@ h1, h2, h3, h4, h5,
   border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
 @media (max-width: 991.98px) {
   .ftco-navbar-light {
-    background: rebeccapurple !important;
+    background: #f9f8f3 !important;
     position: relative;
     top: 0; } }
 .ftco-navbar-light .navbar-brand {
-  color: #fff;
+  color: black !important;
   font-family: "Josefin Sans", Arial, sans-serif; }
 @media (min-width: 768px) {
   .ftco-navbar-light .navbar-brand {
-    color: #fff; } }
+    color: black !important; } }
 .ftco-navbar-light .navbar-nav > .nav-item > .nav-link {
   font-size: 13px;
   padding-top: .9rem;
   padding-bottom: .9rem;
   padding-left: 0;
   padding-right: 0;
-  color: rgba(255, 255, 255, 0.9);
+  color: black !important;
   font-weight: 400;
   position: relative;
   text-transform: uppercase;
@@ -7324,7 +7324,7 @@ h1, h2, h3, h4, h5,
     padding-bottom: 1.5rem;
     padding-left: 20px;
     padding-right: 20px;
-    color: rgba(255, 255, 255, 0.9); } }
+    color: black; } }
 .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover, .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:focus {
   color: #c49b63; }
 .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:hover:after, .ftco-navbar-light .navbar-nav > .nav-item > .nav-link:focus:after {
@@ -7338,7 +7338,7 @@ h1, h2, h3, h4, h5,
   box-shadow: 0px 10px 34px -20px rgba(0, 0, 0, 0.41); }
 .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu .dropdown-item {
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.5);
+  color: black !important;
   background: #0d0d0d; }
 .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu .dropdown-item:hover, .ftco-navbar-light .navbar-nav > .nav-item .dropdown-menu .dropdown-item:focus {
   color: #fff; }
@@ -7413,7 +7413,7 @@ h1, h2, h3, h4, h5,
   background: #c49b63; }
 .ftco-navbar-light .navbar-toggler {
   border: none;
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: black !important;
   cursor: pointer;
   padding-right: 0;
   text-transform: uppercase;
@@ -7502,7 +7502,7 @@ h1, h2, h3, h4, h5,
   font-size: 12px;
   display: block;
   text-align: center;
-  color: #fff;
+  color: black;
   letter-spacing: 5px; }
 
 .owl-carousel {
@@ -9264,7 +9264,7 @@ textarea.form-control {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
 .navbar-collapse {
-  background-color: rebeccapurple !important;
+  //background-color: rebeccapurple !important;
   margin-left: -18px !important;
   margin-right: -42px !important;
 }
