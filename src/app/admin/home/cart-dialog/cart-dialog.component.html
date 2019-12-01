@@ -72,7 +72,7 @@
           <nb-alert *ngIf="totalPriceWithShip <= 20" status="danger" closable>No products in your Cart</nb-alert>
         </nb-card-body>
         <nb-card-footer>
-          <button nbButton [disabled]="noProducts || !checkoutForm.valid" fullWidth status="success" (click)="productChecout(meals, totalPriceWithShip)">Go to checkout &nbsp; <i class="fa fa-arrow-right"></i></button>
+          <button nbButton [disabled]="noProducts || !checkoutForm.valid" fullWidth status="success" (click)="productCheckout(meals, totalPriceWithShip)">Go to checkout &nbsp; <i class="fa fa-arrow-right"></i></button>
         </nb-card-footer>
       </nb-card>
     </div>

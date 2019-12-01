@@ -18,17 +18,17 @@ export class CategoryService {
   }
   public getAll(): Observable<Category[]> {
     return this.http.get<Category[]>(this.fullUrl, {
-      headers: this.headers,
+      // headers: this.headers,
     });
   }
   public getCategoryById (id): Observable<Category> {
     return this.http.get<Category>(this.fullUrl + `/${id}`, {
-      headers: this.headers,
+      // headers: this.headers,
     });
   }
   public save (category: Category) {
     return this.http.post<Category>(this.fullUrl, category, {
-      headers: this.headers,
+      // headers: this.headers,
     });
   }
 }

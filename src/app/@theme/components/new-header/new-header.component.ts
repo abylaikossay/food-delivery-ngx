@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
+import {SendUserService} from '../../../@core/real-services/send-user.service';
+import {User} from '../../../@core/data/users';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'ngx-new-header',
@@ -8,15 +11,30 @@ import {environment} from '../../../../environments/environment';
   styleUrls: ['./new-header.component.scss'],
 })
 export class NewHeaderComponent implements OnInit {
-  isNavbarCollapsed = true;
+  // isNavbarCollapsed = true;
   authorized: boolean = false;
   unauthorized: boolean = true;
   userName: string = 'Profile';
+  subscription: Subscription;
+  user: User;
   constructor(private router: Router,
+              private sendUserService: SendUserService,
   ) {
   }
 
   ngOnInit() {
+    this.subscription = this.sendUserService.getUserInfo().subscribe( perf => {
+      this.user = perf.user;
+      if (perf.user === '') {
+        this.authorized = false;
+        this.unauthorized = true;
+      } else {
+      console.log(this.user);
+      this.userName = perf.user.sub;
+      this.authorized = true;
+      this.unauthorized = false;
+      }
+    });
     if (localStorage.getItem(environment.apiToken)) {
       this.authorized = true;
       this.unauthorized = false;
@@ -24,6 +42,7 @@ export class NewHeaderComponent implements OnInit {
     } else {
       this.authorized = false;
       this.unauthorized = true;
+      this.userName = '';
     }
     // this.activeBtn();
   }

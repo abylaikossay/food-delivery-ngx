@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./one-column.layout.scss'],
   template: `
     <nb-layout windowMode>
-      <nb-layout-header fixed style="margin-left: -20px; margin-right: -20px; background-color: rebeccapurple;">
+      <nb-layout-header fixed style="margin-left: -20px; margin-right: -20px; background-color: #f8f8f3;">
 <!--        <ngx-header></ngx-header>-->
           <ngx-new-header style="width: 100%;"></ngx-new-header>
       </nb-layout-header>

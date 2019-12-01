@@ -31,7 +31,7 @@ export class LoginComponent extends NbLoginComponent {
         //   localStorage.setItem('employeeId', perf['id']);
         // });
           this.authService.authorize(res);
-      }).catch(() => this.toastr.danger('Логин или пароль введен неверно'));
+      }).catch(() => this.toastr.danger('Login or password is incorrect'));
   }
 
 }

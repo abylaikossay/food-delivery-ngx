@@ -7,6 +7,7 @@ import * as jwt_decode from 'jwt-decode';
 import {NbToastrService} from '@nebular/theme';
 import {User} from '../models/user';
 import {UserService} from './user.service';
+import {SendUserService} from './send-user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,9 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router,
               private userService: UserService,
-              private toastrService: NbToastrService) {
+              private toastrService: NbToastrService,
+              private sendUserService: SendUserService,
+  ) {
 
   }
 
@@ -32,13 +35,14 @@ export class AuthService {
     const token = perf;
     const payload = jwt_decode(token);
     console.log(payload);
+    this.sendUserService.sendUserInfo(payload);
     localStorage.setItem(environment.apiToken, token);
     localStorage.setItem(environment.roleName, payload.scopes.authority);
     localStorage.setItem(environment.userName, payload.sub);
     this.toastrService.success('Authorization Success');
-      setTimeout(() => {
-        this.router.navigate(['info']);
-      }, 1500);
+    setTimeout(() => {
+      this.router.navigate(['shop']);
+    }, 500);
   }
 
   authenticated() {
@@ -105,7 +109,8 @@ export class AuthService {
     this.authorized.next(false);
     localStorage.clear();
     this.toastrService.info('You are unauthorized');
-    this.router.navigate(['/login']);
+    this.sendUserService.clearData();
+    this.router.navigate(['/info']);
   }
 
   getMyRole() {

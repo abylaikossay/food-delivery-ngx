@@ -18,12 +18,12 @@ export class MealService {
   }
   public getAll(): Observable<Meal[]> {
     return this.http.get<Meal[]>(this.fullUrl, {
-      headers: this.headers,
+      // headers: this.headers,
     });
   }
   public getMealById (id): Observable<Meal> {
     return this.http.get<Meal>(this.fullUrl + `/${id}`, {
-      headers: this.headers,
+      // headers: this.headers,
     });
   }
   public save (meal: Meal) {
@@ -33,7 +33,7 @@ export class MealService {
   }
   public getMealByCategory(id): Observable<Meal[]> {
     return this.http.get<Meal[]>(this.fullUrl + `/category/${id}`, {
-      headers: this.headers,
+      // headers: this.headers,
     });
   }
 }

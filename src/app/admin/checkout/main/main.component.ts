@@ -1,15 +1,87 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SendMealService} from '../../../@core/real-services/send-meal.service';
+import {Subscription} from 'rxjs';
+import {Meal} from '../../../@core/models/meal';
+import {Elements, StripeService, Element as StripeElement, ElementsOptions} from 'ngx-stripe';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'ngx-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit {
+  meals: Meal[];
+  subscription: Subscription;
+  totalPrice: number;
+  address: string;
+  elements: Elements;
+  card: StripeElement;
+  elementsOptions: ElementsOptions = {
+    locale: 'en',
+  };
+  stripeTest: FormGroup;
+  constructor(private sendMealService: SendMealService,
+              private fb: FormBuilder,
+              private stripeService: StripeService,
+  ) {
+  }
 
-  constructor() { }
-
+  // ngOnInit(): void {
+  //   this.sendMealService.getOrderCheckout().subscribe( data => {
+  //     console.log(data);
+  //     this.meals = data.products;
+  //     this.address = data.address;
+  //     this.totalPrice = data.totalPrice;
+  //     console.log(data.address);
+  //   });
+  //   this.subscription = this.sendMealService.getOrderCheckout().subscribe( data => {
+  //     this.meals = data.products;
+  //     console.log(data);
+  //   });
+  // }
   ngOnInit() {
+    this.stripeTest = this.fb.group({
+      name: ['', [Validators.required]],
+    });
+    this.stripeService.elements(this.elementsOptions)
+      .subscribe(elements => {
+        this.elements = elements;
+        // Only mount the element the first time
+        if (!this.card) {
+          this.card = this.elements.create('card', {
+            style: {
+              base: {
+                iconColor: '#666EE8',
+                color: '#31325F',
+                lineHeight: '40px',
+                fontWeight: 300,
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSize: '18px',
+                '::placeholder': {
+                  color: '#CFD7E0',
+                },
+              },
+            },
+          });
+          this.card.mount('#card-element');
+        }
+      });
+  }
+  buy() {
+    const name = this.stripeTest.get('name').value;
+    this.stripeService
+      .createToken(this.card, { name })
+      .subscribe(result => {
+        if (result.token) {
+          // Use the token to create a charge or a customer
+          // https://stripe.com/docs/charges
+          console.log(result.token);
+        } else if (result.error) {
+          // Error creating the token
+          console.log(result.error.message);
+        }
+      });
   }
 
 }

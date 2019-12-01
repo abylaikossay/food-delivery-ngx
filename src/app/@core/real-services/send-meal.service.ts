@@ -1,88 +1,99 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { Pagination } from '../models/pagination/pagination';
-import { Meal } from '../models/meal';
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {Meal} from '../models/meal';
 
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class SendMealService {
-    private mealArray = new Array<any>();
-    private cartShowSubject = new Subject<any>();
-    readonly mealSumAndSums = new Subject<any>();
-    private mealRemovedSubject = new Subject<any>();
+  private checkoutSubject = new Subject<any>();
+  private mealArray = new Array<any>();
+  private cartShowSubject = new Subject<any>();
+  readonly mealSumAndSums = new Subject<any>();
+  private mealRemovedSubject = new Subject<any>();
 
-    pushMeal(data: Meal) {
-        this.mealArray.push(data);
-        this.mealSumAndSums.next(this.getMealSumAndSums());
-    }
-    getMealSumAndSums() {
-        const mealSumsAndSums = {} as any;
-        mealSumsAndSums.sum = this.calculateSum();
-        mealSumsAndSums.meals = this.mealArray;
-        return mealSumsAndSums;
-    }
-    calculateSum() {
-        let mealSum = 0;
-        const mealSums = this.mealArray.map(value => {
-            value.totalPrice =  value.price * value.quantity;
-            return value.totalPrice;
-        });
-        mealSums.forEach( value => {
-            mealSum += value;
-        });
-        return mealSum;
-    }
+  pushMeal(data: Meal) {
+    this.mealArray.push(data);
+    this.mealSumAndSums.next(this.getMealSumAndSums());
+  }
 
-    changeMealQuantity(data: Meal, isDeleted?: boolean, isRemoved?: boolean) {
-        let arrayIndex;
-        this.mealArray.forEach((value, index) => {
-            if (value.id === data.id) {
-                value.quantity = data.quantity;
-                arrayIndex = index;
-            }
-        });
-        if (isDeleted) {
-            this.mealArray.splice(arrayIndex, 1);
-        }
-        if (isRemoved) {
-          data.isAddedToCart = false;
-        }
-        if (this.mealArray.length === 0) {
-            this.clearData();
-        }
-        this.mealSumAndSums.next(this.getMealSumAndSums());
-    }
-    // mealRemoved (isRemoved: boolean) {
-    //   return isRemoved;
-    // }
+  getMealSumAndSums() {
+    const mealSumsAndSums = {} as any;
+    mealSumsAndSums.sum = this.calculateSum();
+    mealSumsAndSums.meals = this.mealArray;
+    return mealSumsAndSums;
+  }
 
-    sendCartShow(added: boolean) {
-        this.cartShowSubject.next({
-            productsAdded: added,
-        });
-    }
-    // mealRemoved (id, isRemoved: boolean) {
-    //   if (isRemoved) {
-    //     this.mealRemovedSubject.next({
-    //       removed: isRemoved,
-    //       id: id,
-    //     });
-    //   }
-    // }
-    // getMealRemoved(id): Observable<any> {
-    //   return this.mealRemovedSubject.asObservable();
-    // }
+  calculateSum() {
+    let mealSum = 0;
+    const mealSums = this.mealArray.map(value => {
+      value.totalPrice = value.price * value.quantity;
+      return value.totalPrice;
+    });
+    mealSums.forEach(value => {
+      mealSum += value;
+    });
+    return mealSum;
+  }
 
-    clearData() {
-        this.sendCartShow(false);
+  changeMealQuantity(data: Meal, isDeleted?: boolean, isRemoved?: boolean) {
+    let arrayIndex;
+    this.mealArray.forEach((value, index) => {
+      if (value.id === data.id) {
+        value.quantity = data.quantity;
+        arrayIndex = index;
+      }
+    });
+    if (isDeleted) {
+      this.mealArray.splice(arrayIndex, 1);
     }
+    if (isRemoved) {
+      data.isAddedToCart = false;
+    }
+    if (this.mealArray.length === 0) {
+      this.clearData();
+    }
+    this.mealSumAndSums.next(this.getMealSumAndSums());
+  }
 
-    getCartShow(): Observable<any> {
-        return this.cartShowSubject.asObservable();
-    }
+  sendCartShow(added: boolean) {
+    this.cartShowSubject.next({
+      productsAdded: added,
+    });
+  }
 
-    constructor() {
-    }
+  // mealRemoved (id, isRemoved: boolean) {
+  //   if (isRemoved) {
+  //     this.mealRemovedSubject.next({
+  //       removed: isRemoved,
+  //       id: id,
+  //     });
+  //   }
+  // }
+  // getMealRemoved(id): Observable<any> {
+  //   return this.mealRemovedSubject.asObservable();
+  // }
+  sendOrderToCheckout(products, address, totalPrice) {
+    this.checkoutSubject.next({
+      products: products,
+      address: address,
+      totalPrice: totalPrice,
+    });
+  }
+
+  getOrderCheckout() {
+    return this.checkoutSubject.asObservable();
+  }
+
+  clearData() {
+    this.sendCartShow(false);
+  }
+
+  getCartShow(): Observable<any> {
+    return this.cartShowSubject.asObservable();
+  }
+
+  constructor() {
+  }
 }

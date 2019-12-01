@@ -12,6 +12,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {Browser} from 'leaflet';
 import win = Browser.win;
 import {main} from '@angular/compiler-cli/src/main';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'ngx-main',
@@ -28,6 +29,7 @@ export class MainComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   productsAddedToCart: boolean = false;
   addedProducts: Meal[] = [];
+  unauthorized: boolean = true;
 
   constructor(private mealService: MealService,
               private categoryService: CategoryService,
@@ -39,6 +41,12 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // console.log(localStorage.getItem(environment.apiToken))
+    if (localStorage.getItem(environment.apiToken)) {
+      this.unauthorized = false;
+    } else {
+      this.unauthorized = true;
+    }
     // window.addEventListener('scroll', this.scroll, true);
     document.addEventListener('scroll', MainComponent.scroll, true);
     this.fetchAll();
@@ -72,6 +80,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.noMeals = false;
     this.mealService.getAll().subscribe(perf => {
       this.meals = perf;
+      console.log(this.meals);
     });
     this.categoryService.getAll().subscribe(perf => {
       this.categories = perf;

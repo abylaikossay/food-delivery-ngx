@@ -1,76 +1,80 @@
-  <ngx-header></ngx-header>
-  <div class="row">
-    <div class="food-navigation">
-      <nb-card style="width: 99%;">
-        <nb-card-header>
-          Categories
-        </nb-card-header>
-        <!--          <mat-selection-list>-->
-        <!--            <mat-list-option *ngFor="let category of categories">-->
-        <!--              {{category.name}}-->
-        <!--            </mat-list-option>-->
-        <!--          </mat-selection-list>-->
-        <nb-list>
-          <nb-list-item (click)="fetchAll()">
-            All Categories
-          </nb-list-item>
-          <nb-list-item *ngFor="let category of categories" (click)="changeCategory(category.id)">
-            {{ category.name }}
-          </nb-list-item>
-        </nb-list>
-      </nb-card>
-    </div>
-    <div class="categories-for-mobile">
-      <nb-select class="categories-select" id="categories-select" fullWidth placeholder="Select Category" size="large"
-                 [(selected)]="selectedItem">
-        <nb-option style="background-color: white;" (selectionChange)="fetchAll()" value="1">All Categories</nb-option>
-        <nb-option *ngFor="let category of categories" (selectionChange)="changeCategory(category.id)"
-                   value="{{category.name}}">{{category.name}}</nb-option>
-      </nb-select>
-    </div>
-    <!--  <div class="categories-for-mobile">-->
-    <!--    <mat-form-field>-->
-    <!--      <mat-select [(value)]="selected">-->
-    <!--        <mat-option value="1" (click)="fetchAll()" >-->
-    <!--          All Categories-->
-    <!--        </mat-option>-->
-    <!--        <mat-option *ngFor="let category of categories" [value]="category.id">-->
-    <!--          {{category.name}}-->
-    <!--        </mat-option>-->
-    <!--      </mat-select>-->
-    <!--    </mat-form-field>-->
-    <!--  </div>-->
-    <div class="food-list" id="food-list">
-      <nb-card>
-        <nb-card-header>
-          {{ categoryName }}
-        </nb-card-header>
-        <nb-card-body>
-          <h1 *ngIf="noMeals">No products in cush category</h1>
-          <div class="row">
-            <ngx-meal-card *ngFor="let meal of meals" [meal]="meal" style="padding-bottom: 30px;"
-                           class="col-lg-4 col-md-4 col-sm-6">
-            </ngx-meal-card>
-          </div>
-        </nb-card-body>
-      </nb-card>
-
-    </div>
+<ngx-header></ngx-header>
+<div class="row">
+  <div class="food-navigation">
+    <nb-card style="width: 99%;">
+      <nb-card-header>
+        Categories
+      </nb-card-header>
+      <!--          <mat-selection-list>-->
+      <!--            <mat-list-option *ngFor="let category of categories">-->
+      <!--              {{category.name}}-->
+      <!--            </mat-list-option>-->
+      <!--          </mat-selection-list>-->
+      <nb-list>
+        <nb-list-item (click)="fetchAll()">
+          All Categories
+        </nb-list-item>
+        <nb-list-item *ngFor="let category of categories" (click)="changeCategory(category.id)">
+          {{ category.name }}
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
   </div>
-  <nb-card class="cart-bottom" *ngIf='productsAddedToCart'>
-    <nb-card-body>
-      <div class="row">
-        <div class="col-md-2 col-2">
-          <i class="fas fa-shopping-cart fa-2x"></i>
+  <div class="categories-for-mobile">
+    <nb-select class="categories-select" id="categories-select" fullWidth placeholder="Select Category" size="large"
+               [(selected)]="selectedItem">
+      <nb-option style="background-color: white;" (selectionChange)="fetchAll()" value="1">All Categories</nb-option>
+      <nb-option *ngFor="let category of categories" (selectionChange)="changeCategory(category.id)"
+                 value="{{category.name}}">{{category.name}}</nb-option>
+    </nb-select>
+  </div>
+  <!--  <div class="categories-for-mobile">-->
+  <!--    <mat-form-field>-->
+  <!--      <mat-select [(value)]="selected">-->
+  <!--        <mat-option value="1" (click)="fetchAll()" >-->
+  <!--          All Categories-->
+  <!--        </mat-option>-->
+  <!--        <mat-option *ngFor="let category of categories" [value]="category.id">-->
+  <!--          {{category.name}}-->
+  <!--        </mat-option>-->
+  <!--      </mat-select>-->
+  <!--    </mat-form-field>-->
+  <!--  </div>-->
+  <div class="food-list" id="food-list">
+    <nb-card>
+      <nb-card-header>
+        {{ categoryName }}
+        <ng-container *ngIf="unauthorized === true">
+          <br><br>
+          <nb-alert status="danger">Please authorise first</nb-alert>
+        </ng-container>
+      </nb-card-header>
+      <nb-card-body>
+        <h1 *ngIf="noMeals">No products in this category</h1>
+        <div class="row">
+          <ngx-meal-card *ngFor="let meal of meals" [meal]="meal" style="padding-bottom: 30px;"
+                         class="col-lg-4 col-md-4 col-sm-6">
+          </ngx-meal-card>
         </div>
-        <div class="col-md-7 col-4">
-          <span class="amount-text">Your order amount </span> <span><strong
-          class="totalPrice">${{totalPrice.toFixed(2) }}</strong></span>
-        </div>
-        <div class="col-md-3 col-6">
-          <button nbButton status="success" (click)="goToCart(addedProducts, totalPrice)">Go to cart &nbsp;<i
-            class="fas fa-arrow-right"></i></button>
-        </div>
+      </nb-card-body>
+    </nb-card>
+
+  </div>
+</div>
+<nb-card class="cart-bottom" *ngIf='productsAddedToCart'>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-2 col-2">
+        <i class="fas fa-shopping-cart fa-2x"></i>
       </div>
-    </nb-card-body>
-  </nb-card>
+      <div class="col-md-7 col-4">
+        <span class="amount-text">Your order amount </span> <span><strong
+        class="totalPrice">${{totalPrice.toFixed(2) }}</strong></span>
+      </div>
+      <div class="col-md-3 col-6">
+        <button nbButton status="success" (click)="goToCart(addedProducts, totalPrice)">Go to cart &nbsp;<i
+          class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

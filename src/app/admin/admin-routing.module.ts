@@ -6,13 +6,13 @@ import { NotFoundComponent } from './miscellaneous/not-found/not-found.component
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('./c-auth/c-auth.module').then(m => m.CAuthModule),
-  },
-  {
   path: '',
   component: AdminComponent,
   children: [
+    {
+      path: 'auth',
+      loadChildren: () => import('./c-auth/c-auth.module').then(m => m.CAuthModule),
+    },
     {
       path: 'miscellaneous',
       loadChildren: () => import('./miscellaneous/miscellaneous.module')

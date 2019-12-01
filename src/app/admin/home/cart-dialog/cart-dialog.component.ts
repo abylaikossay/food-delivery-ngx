@@ -4,6 +4,7 @@ import {Meal} from '../../../@core/models/meal';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {SendMealService} from '../../../@core/real-services/send-meal.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-cart-dialog',
@@ -21,6 +22,7 @@ export class CartDialogComponent implements OnInit {
               private sendMealService: SendMealService,
               private toastrService: NbToastrService,
               private builder: FormBuilder,
+              private router: Router,
   ) {
   }
   emptyCart() {
@@ -69,10 +71,10 @@ export class CartDialogComponent implements OnInit {
     this.toastrService.warning('Product has been removed from cart!');
     this.emptyCart();
   }
-  productChecout(data, totalprice) {
+  productCheckout(data, totalprice) {
     const address = this.checkoutForm.get('address').value;
-    console.log(address);
-    console.log(data);
-    console.log(totalprice);
+    this.sendMealService.sendOrderToCheckout(data, address, totalprice);
+    this.dismiss();
+    this.router.navigate(['checkout']);
   }
 }

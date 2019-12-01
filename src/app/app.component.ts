@@ -15,8 +15,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // const selectFix = document.getElementById('categories-select');
-    // const foodList = document.getElementById('food-list');
     this.analytics.trackPageViews();
     // if (!localStorage.getItem('apiToken')) {
     //   this.router.navigate(['auth/login']);
