@@ -34,17 +34,17 @@ export class AuthService {
     this.authorized.next(true);
     const token = perf;
     const payload = jwt_decode(token);
-    console.log(payload);
     this.sendUserService.sendUserInfo(payload);
     localStorage.setItem(environment.apiToken, token);
     localStorage.setItem(environment.roleName, payload.scopes.authority);
     localStorage.setItem(environment.userName, payload.sub);
     this.toastrService.success('Authorization Success');
     setTimeout(() => {
-      this.router.navigate(['shop']);
+      this.router.navigate(['shop']).then(() => {
+        window.location.reload();
+      });
     }, 500);
   }
-
   authenticated() {
     return this.http.get(environment.apiUrl + '/zuul/api/employees/authenticated', {
       headers: this.headers,

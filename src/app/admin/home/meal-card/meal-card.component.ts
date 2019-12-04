@@ -22,6 +22,7 @@ export class MealCardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.meal.quantity = 1;
   }
 
   addToCart(meal) {

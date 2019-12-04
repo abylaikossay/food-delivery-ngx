@@ -12,6 +12,7 @@ export class Meal {
   isAddedToCart: boolean;
   price: number;
   quantity: number;
+  totalPrice: number;
   tag: string;
   title: string;
   url: string;

@@ -61,18 +61,18 @@
           </div>
           <div class="order-cost">
             <span>Delivery cost:</span>
-            <span class="total-cost">$20</span>
+            <span class="total-cost">{{deliveryPrice | currency: 'USD'}}</span>
           </div>
           <hr>
           <div class="order-total-cost">
             <span class>Total:</span>
-            <span class="total-cost">{{totalPriceWithShip.toFixed(2)}}</span>
+            <span class="total-cost">{{totalPriceWithShip.toFixed(2) | currency: 'USD'}}</span>
           </div>
           <br><br>
           <nb-alert *ngIf="totalPriceWithShip <= 20" status="danger" closable>No products in your Cart</nb-alert>
         </nb-card-body>
         <nb-card-footer>
-          <button nbButton [disabled]="noProducts || !checkoutForm.valid" fullWidth status="success" (click)="productCheckout(meals, totalPriceWithShip)">Go to checkout &nbsp; <i class="fa fa-arrow-right"></i></button>
+          <button nbButton [disabled]="noProducts || !checkoutForm.valid" fullWidth status="success" (click)="productCheckout(meals, totalPrice)">Go to checkout &nbsp; <i class="fa fa-arrow-right"></i></button>
         </nb-card-footer>
       </nb-card>
     </div>

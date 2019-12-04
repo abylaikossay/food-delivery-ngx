@@ -7,11 +7,9 @@ import {Meal} from '../models/meal';
   providedIn: 'root',
 })
 export class SendMealService {
-  private checkoutSubject = new Subject<any>();
   private mealArray = new Array<any>();
   private cartShowSubject = new Subject<any>();
   readonly mealSumAndSums = new Subject<any>();
-  private mealRemovedSubject = new Subject<any>();
 
   pushMeal(data: Meal) {
     this.mealArray.push(data);
@@ -56,40 +54,14 @@ export class SendMealService {
     }
     this.mealSumAndSums.next(this.getMealSumAndSums());
   }
-
   sendCartShow(added: boolean) {
     this.cartShowSubject.next({
       productsAdded: added,
     });
   }
-
-  // mealRemoved (id, isRemoved: boolean) {
-  //   if (isRemoved) {
-  //     this.mealRemovedSubject.next({
-  //       removed: isRemoved,
-  //       id: id,
-  //     });
-  //   }
-  // }
-  // getMealRemoved(id): Observable<any> {
-  //   return this.mealRemovedSubject.asObservable();
-  // }
-  sendOrderToCheckout(products, address, totalPrice) {
-    this.checkoutSubject.next({
-      products: products,
-      address: address,
-      totalPrice: totalPrice,
-    });
-  }
-
-  getOrderCheckout() {
-    return this.checkoutSubject.asObservable();
-  }
-
   clearData() {
     this.sendCartShow(false);
   }
-
   getCartShow(): Observable<any> {
     return this.cartShowSubject.asObservable();
   }
