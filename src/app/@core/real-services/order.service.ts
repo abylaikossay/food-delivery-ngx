@@ -27,6 +27,9 @@ export class OrderService {
       headers: this.headers,
     });
   }
+  public paymentCharge (charge: any) {
+    return this.http.post<any> (environment.apiUrl + '/payment/charge', charge);
+  }
   public deleteOrderbyId (id: number) {
     return this.http.delete(this.fullUrl + `/${id}`).toPromise();
   }

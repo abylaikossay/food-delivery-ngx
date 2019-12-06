@@ -101,6 +101,31 @@
   </div>
 
   <div class="form-control-group">
+    <label class="label" for="input-address">Address: </label>
+    <input nbInput
+           [(ngModel)]="user.address"
+           #fullName="ngModel"
+           id="input-address"
+           name="fullName"
+           placeholder="Address"
+           autofocus
+           fullWidth
+           [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : ''">
+  </div>
+
+  <div class="form-control-group">
+    <label class="label" for="input-date">Date of Birth: </label>
+    <mat-form-field [floatLabel]="'never'">
+      <mat-placeholder *ngIf="!input.value">Choose a date</mat-placeholder>
+      <input #input id="input-date" (dateInput)="addEvent('input', $event)"
+             (dateChange)="addEvent('change', $event)"
+             matInput [matDatepicker]="picker">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="form-control-group">
     <label class="label" for="input-email">Login</label>
     <input nbInput
            [(ngModel)]="user.login"
@@ -176,7 +201,7 @@
   <button nbButton
           fullWidth
           status="success"
-          [disabled]="submitted || !form.valid"
+          [disabled]="submitted || !form.valid || password.value != rePass.value || !email.valid"
           [class.btn-pulse]="submitted">
     Register
   </button>

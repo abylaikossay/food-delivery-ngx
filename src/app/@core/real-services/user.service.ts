@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
 import {User} from '../models/user';
@@ -8,7 +8,10 @@ import {User} from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
-
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + localStorage.getItem(environment.apiToken),
+  });
   fullUrl = environment.apiUrl + '/api/users';
 
   constructor(private http: HttpClient) {
@@ -52,6 +55,11 @@ export class UserService {
 
   public delete(user: User) {
     return this.http.delete(this.fullUrl + `/${user.id}`);
+  }
+  public getCurrentUser(): Observable<any> {
+    return this.http.post<any>( this.fullUrl + '/current', null, {
+      headers: this.headers,
+    });
   }
 
   public update(user: User) {

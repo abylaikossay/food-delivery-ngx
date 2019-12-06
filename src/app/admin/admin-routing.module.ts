@@ -24,6 +24,11 @@ const routes: Routes = [
         .then(m => m.HomeModule),
     },
     {
+      path: 'profile',
+      loadChildren: () => import('./profile/profile.module')
+        .then(m => m.ProfileModule),
+    },
+    {
       path: 'checkout',
       loadChildren: () => import('./checkout/checkout.module')
         .then(m => m.CheckoutModule),

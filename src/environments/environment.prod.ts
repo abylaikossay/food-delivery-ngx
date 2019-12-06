@@ -5,12 +5,11 @@
  */
 export const environment = {
   production: true,
-  apiUrl: 'http://10.100.0.7:8080',
-  // apiUrl: 'http://46.36.132.23:8089',
+  apiUrl: 'http://46.101.175.38:8080',
   apiToken: 'apiToken',
+  userName: 'userName',
   tokenPrefix: 'Bearer ',
   roleName: 'role',
-  userName: 'userName',
   defaultImg: '/api/files/no-image',
   fileUrl: '/api/files/get',
 };

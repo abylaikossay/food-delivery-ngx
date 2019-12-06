@@ -90,10 +90,8 @@ export class MainComponent implements OnInit {
       .createToken(this.card, { name })
       .subscribe(result => {
         if (result.token) {
-          this.toastrService.success('Payment successful');
           const mealList = [];
           this.meals.forEach( e => {
-            console.log(e);
             const object = {
               id: e.id,
               title: e.title,
@@ -106,23 +104,32 @@ export class MainComponent implements OnInit {
             user: { id: 1},
             meals: mealList,
             overallPrice: this.totalPrice,
-            paymentType: 'tala',
+            paymentType: 'card',
             status: 1,
           };
-
           this.orderService.save(order).subscribe( perf => {
-            console.log(perf);
-            setTimeout(() => {
-              this.router.navigate(['shop']).then(() => {
-                window.location.reload();
-              });
-            }, 500);
+            // this.toastrService.success('Payment successful');
+            const stripeObject = {
+              token: result.token.id,
+              amount: this.totalPriceWithDelivery,
+              description: `${perf.id}`,
+            };
+            this.orderService.paymentCharge(stripeObject).subscribe( data => {
+              console.log(data);
+            });
+            // setTimeout(() => {
+            //   this.router.navigate(['shop']).then(() => {
+            //     window.location.reload();
+            //   });
+            // }, 500);
           }, error => {
             console.log(error);
           });
+          console.log(result);
+
+
           // Use the token to create a charge or a customer
           // https://stripe.com/docs/charges
-          console.log(result.token);
         } else if (result.error) {
           this.toastrService.warning(result.error.message);
           // Error creating the token
