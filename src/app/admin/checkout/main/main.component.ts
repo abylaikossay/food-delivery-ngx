@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NbToastrService} from '@nebular/theme';
 import {Router} from '@angular/router';
 import {OrderService} from '../../../@core/real-services/order.service';
+import {User} from '../../../@core/models/user';
 
 @Component({
   selector: 'ngx-main',
@@ -22,6 +23,7 @@ export class MainComponent implements OnInit {
   deliveryPrice: number = 10;
   elements: Elements;
   card: StripeElement;
+  user: User;
   elementsOptions: ElementsOptions = {
     locale: 'auto',
   };
@@ -42,6 +44,7 @@ export class MainComponent implements OnInit {
     this.meals = this.router.getCurrentNavigation().extras.state.data;
     this.totalPrice = this.router.getCurrentNavigation().extras.state.totalPrice;
     this.address = this.router.getCurrentNavigation().extras.state.address;
+    this.user = this.router.getCurrentNavigation().extras.state.user;
     this.totalPriceWithDelivery = this.totalPrice + this.deliveryPrice;
   }
   widthFunction(y) {
@@ -50,10 +53,9 @@ export class MainComponent implements OnInit {
     }
   }
   ngOnInit() {
+    console.log(this.user);
     const y = window.matchMedia('(min-width: 500px)');
     this.widthFunction(y);
-    console.log(this.meals);
-    console.log(this.totalPrice);
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]],
     });
@@ -83,6 +85,9 @@ export class MainComponent implements OnInit {
   }
   goBack() {
     this.toastrService.warning('You canceled your order!');
+    this.router.navigate(['/shop']).then( () => {
+        window.location.reload();
+    });
   }
   buy() {
     const name = this.stripeTest.get('name').value;
@@ -108,7 +113,7 @@ export class MainComponent implements OnInit {
             status: 1,
           };
           this.orderService.save(order).subscribe( perf => {
-            // this.toastrService.success('Payment successful');
+            this.toastrService.success('Payment successful');
             const stripeObject = {
               token: result.token.id,
               amount: this.totalPriceWithDelivery,
@@ -117,17 +122,15 @@ export class MainComponent implements OnInit {
             this.orderService.paymentCharge(stripeObject).subscribe( data => {
               console.log(data);
             });
-            // setTimeout(() => {
-            //   this.router.navigate(['shop']).then(() => {
-            //     window.location.reload();
-            //   });
-            // }, 500);
+            this.router.navigate(['/checkout/success'], {state: {
+              user: this.user,
+              totalPrice: this.totalPriceWithDelivery,
+              }});
           }, error => {
+            this.router.navigate(['/checkout/failure']);
             console.log(error);
           });
           console.log(result);
-
-
           // Use the token to create a charge or a customer
           // https://stripe.com/docs/charges
         } else if (result.error) {

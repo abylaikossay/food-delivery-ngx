@@ -1,5 +1,5 @@
 <section id="section-container">
-<button nbButton status="info" [routerLink]="['/shop']" (click)="goBack()">Go Back</button><br><br>
+<button nbButton status="info" (click)="goBack()">Go Back</button><br><br>
 <nb-card>
   <nb-card-header>
     Your order
@@ -37,8 +37,8 @@
       <input status="success" id="address" nbInput fullWidth disabled value="{{address}}" placeholder="Address" type="text">
       <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
         <div class="form-group">
-        <label for="ownerInput" class="label">Owner</label>
-      <input nbInput fullWidth formControlName="name" id="ownerInput" placeholder="Owner">
+        <label for="ownerInput" class="label">Input Owner Name</label>
+      <input nbInput fullWidth formControlName="name" id="ownerInput" placeholder="For example:   {{user.firstName + ' ' + user.lastName}}">
         </div>
         <div id="card-element" class="field"></div>
         <button [disabled]="!stripeTest.valid" nbButton fullWidth status="success" type="submit">Pay ${{totalPriceWithDelivery.toFixed(2)}}</button>

@@ -41,12 +41,12 @@
     <div class="col-md-6">
       <nb-card class="total-card">
         <nb-card-header>
-          User Info
+          <span style="text-transform: capitalize">{{user.firstName + ' ' + user.lastName}}</span>
         </nb-card-header>
         <nb-card-body>
           <form [formGroup]="checkoutForm">
           <label class="label" for="address">Address</label>
-          <input formControlName="address" id="address" nbInput fullWidth placeholder="Please enter you address">
+          <input formControlName="address" id="address" nbInput fullWidth placeholder="Please enter you address" value="{{user.address}}">
           </form>
         </nb-card-body>
       </nb-card>
@@ -72,7 +72,7 @@
           <nb-alert *ngIf="totalPriceWithShip <= 20" status="danger" closable>No products in your Cart</nb-alert>
         </nb-card-body>
         <nb-card-footer>
-          <button nbButton [disabled]="noProducts || !checkoutForm.valid" fullWidth status="success" (click)="productCheckout(meals, totalPrice)">Go to checkout &nbsp; <i class="fa fa-arrow-right"></i></button>
+          <button nbButton [disabled]="noProducts" fullWidth status="success" (click)="productCheckout(meals, totalPrice)">Go to checkout &nbsp; <i class="fa fa-arrow-right"></i></button>
         </nb-card-footer>
       </nb-card>
     </div>

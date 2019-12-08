@@ -6,6 +6,7 @@ import {SendMealService} from '../../../@core/real-services/send-meal.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {User} from '../../../@core/models/user';
 
 @Component({
   selector: 'ngx-cart-dialog',
@@ -19,6 +20,7 @@ export class CartDialogComponent implements OnInit {
   noProducts: boolean = false;
   totalPriceWithShip: number;
   deliveryPrice: number = 10;
+  user: User;
   constructor(public dialogRef: MatDialogRef<CartDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data,
               private sendMealService: SendMealService,
@@ -36,6 +38,7 @@ export class CartDialogComponent implements OnInit {
   ngOnInit() {
     this.meals = this.data.meals;
     this.totalPrice = this.data.totalPrice;
+    this.user = this.data.user;
     this.totalPriceWithShip = this.totalPrice + this.deliveryPrice;
     this.emptyCart();
     this.checkoutForm = this.builder.group( {
@@ -80,6 +83,7 @@ export class CartDialogComponent implements OnInit {
     this.router.navigate(['checkout'], {state: {
       data: data,
       address: address,
+        user: this.user,
         totalPrice: totalprice,
       }});
   }

@@ -13,6 +13,7 @@ import {Browser} from 'leaflet';
 import win = Browser.win;
 import {main} from '@angular/compiler-cli/src/main';
 import {environment} from '../../../../environments/environment';
+import {UserService} from '../../../@core/real-services/user.service';
 
 @Component({
   selector: 'ngx-main',
@@ -37,6 +38,7 @@ export class MainComponent implements OnInit, OnDestroy {
               private router: Router,
               private sendMealService: SendMealService,
               private matDialog: MatDialog,
+              private userService: UserService,
   ) {
   }
 
@@ -80,7 +82,6 @@ export class MainComponent implements OnInit, OnDestroy {
     this.noMeals = false;
     this.mealService.getAll().subscribe(perf => {
       this.meals = perf;
-      console.log(this.meals);
     });
     this.categoryService.getAll().subscribe(perf => {
       this.categories = perf;
@@ -100,17 +101,20 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   goToCart(meal, totalPrice): void {
+    this.userService.getCurrentUser().subscribe( data => {
+      this.matDialog.open(CartDialogComponent, {
+        width: '1000px',
+        panelClass: 'cart-dialog-width',
+        data: {meals: meal, totalPrice: totalPrice, user: data.data},
+      });
+    });
     // this.dialogService.open(CartDialogComponent, {
     //   context: {
     //     meals: meal,
     //     totalPrice: totalPrice,
     //   },
     // });
-    this.matDialog.open(CartDialogComponent, {
-      width: '1000px',
-      panelClass: 'cart-dialog-width',
-      data: {meals: meal, totalPrice: totalPrice},
-    });
+
   }
 
 
