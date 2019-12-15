@@ -40,7 +40,7 @@ const routes: Routes = [
     },
     {
       path: '',
-      redirectTo: 'shop',
+      redirectTo: 'info',
       pathMatch: 'full',
     },
     {

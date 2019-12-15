@@ -27,6 +27,11 @@ export class OrderService {
       headers: this.headers,
     });
   }
+  public getUserOrders(id: number) {
+    return this.http.get<any> (this.fullUrl + '/user/' + id, {
+      headers: this.headers,
+    });
+  }
   public paymentCharge (charge: any) {
     return this.http.post<any> (environment.apiUrl + '/payment/charge', charge);
   }

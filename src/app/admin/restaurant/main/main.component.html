@@ -12,7 +12,6 @@
         <h3 class="h3-responsive">Special & Fresh Food</h3>
         <p class="p-carousel">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
           there live the blind texts</p>
-        <button class="goShopButton" mat-raised-button color="primary" [routerLink]="['/shop']">Shop</button>
       </div>
     </mdb-carousel-item>
     <mdb-carousel-item>
@@ -27,7 +26,6 @@
         <h3 class="h3-responsive">Exquisite Dishes From Chef</h3>
         <p class="p-carousel">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
           there live the blind texts.</p>
-        <button class="goShopButton" mat-raised-button color="primary" [routerLink]="['/shop']">Shop</button>
       </div>
     </mdb-carousel-item>
     <mdb-carousel-item>
@@ -42,7 +40,6 @@
         <h3 class="h3-responsive">We are Delicious Restaurant</h3>
         <p class="p-carousel">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
           there live the blind texts.</p>
-        <button class="goShopButton" mat-raised-button color="primary" [routerLink]="['/shop']">Shop</button>
       </div>
     </mdb-carousel-item>
   </mdb-carousel>
@@ -57,13 +54,13 @@
               <p>Together creeping heaven upon third dominion be upon won't darkness rule land
                 behold it created good saw after she'd Our set living. Signs midst dominion
                 creepeth morning</p>
-              <div class="banner_btn">
-                <div class="banner_btn_iner">
-                  <a href="#" class="btn_2">Reservation</a>
-                </div>
-                <a href="https://www.youtube.com/watch?v=pBFQdxA-apI" class="popup-youtube video_popup">
-                  <span></span> Watch our story</a>
-              </div>
+<!--              <div class="banner_btn">-->
+<!--                <div class="banner_btn_iner">-->
+<!--                  <a href="#" class="btn_2">Reservation</a>-->
+<!--                </div>-->
+<!--                <a href="https://www.youtube.com/watch?v=pBFQdxA-apI" class="popup-youtube video_popup">-->
+<!--                  <span></span> Watch our story</a>-->
+<!--              </div>-->
             </div>
           </div>
         </div>
@@ -162,61 +159,61 @@
     </div>
   </section>
   <!-- about part end-->
-  <!-- food_menu start-->
-  <section class="food_menu gray_bg">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-lg-5">
-          <div class="section_tittle">
-            <p>Popular Menu</p>
-            <h2>Delicious Food Menu</h2>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="nav nav-tabs food_menu_nav" id="myTab" role="tablist">
-            <a (click)="fetchAll()" class="active" id="AllCategory-tab" data-toggle="tab" href="#AllCategory" role="tab"
-               aria-controls="AllCategory" aria-selected="false">All Categories <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Triangle_Orange.svg/1152px-Triangle_Orange.svg.png"
-              alt="play"></a>
-            <ng-container *ngFor="let category of categories">
-              <a (click)="getMealByCategory(category.id)" id="AllCategory-tab" data-toggle="tab" href="#AllCategory" role="tab"
-                 aria-controls="AllCategory" aria-selected="false">{{category.name}} <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Triangle_Orange.svg/1152px-Triangle_Orange.svg.png"
-                alt="play"></a>
-            </ng-container>
+<!--  &lt;!&ndash; food_menu start&ndash;&gt;-->
+<!--  <section class="food_menu gray_bg">-->
+<!--    <div class="container">-->
+<!--      <div class="row justify-content-between">-->
+<!--        <div class="col-lg-5">-->
+<!--          <div class="section_tittle">-->
+<!--            <p>Popular Menu</p>-->
+<!--            <h2>Delicious Food Menu</h2>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-6">-->
+<!--          <div class="nav nav-tabs food_menu_nav" id="myTab" role="tablist">-->
+<!--            <a (click)="fetchAll()" class="active" id="AllCategory-tab" data-toggle="tab" href="#AllCategory" role="tab"-->
+<!--               aria-controls="AllCategory" aria-selected="false">All Categories <img-->
+<!--              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Triangle_Orange.svg/1152px-Triangle_Orange.svg.png"-->
+<!--              alt="play"></a>-->
+<!--            <ng-container *ngFor="let category of categories">-->
+<!--              <a (click)="getMealByCategory(category.id)" id="AllCategory-tab" data-toggle="tab" href="#AllCategory" role="tab"-->
+<!--                 aria-controls="AllCategory" aria-selected="false">{{category.name}} <img-->
+<!--                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Triangle_Orange.svg/1152px-Triangle_Orange.svg.png"-->
+<!--                alt="play"></a>-->
+<!--            </ng-container>-->
 
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active single-member" id="AllCategory" role="tabpanel"
-                 aria-labelledby="AllCategory-tab">
-              <div class="row">
-                <div class="col-sm-6 col-lg-6" *ngFor="let meal of meals">
-                  <div class="single_food_item media" (click)="goToMeal(meal.id)">
-                    <img
-                      src="https://images.unsplash.com/photo-1441986060468-324610e6e6a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80"
-                      class="mr-3 meal-image" alt="...">
-                    <div class="media-body align-self-center">
-                      <h3>{{meal.title}}</h3>
-                      <p>{{meal.description}}</p>
-                      <h5>${{meal.price}}</h5>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row" *ngIf="meals.length === 0">
-                <h1>No meals in this Category, Please chose another Category</h1>
-              </div>
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-12">-->
+<!--          <div class="tab-content" id="myTabContent">-->
+<!--            <div class="tab-pane fade show active single-member" id="AllCategory" role="tabpanel"-->
+<!--                 aria-labelledby="AllCategory-tab">-->
+<!--              <div class="row">-->
+<!--                <div class="col-sm-6 col-lg-6" *ngFor="let meal of meals">-->
+<!--                  <div class="single_food_item media" (click)="goToMeal(meal.id)">-->
+<!--                    <img-->
+<!--                      src="https://images.unsplash.com/photo-1441986060468-324610e6e6a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=2700&q=80"-->
+<!--                      class="mr-3 meal-image" alt="...">-->
+<!--                    <div class="media-body align-self-center">-->
+<!--                      <h3>{{meal.title}}</h3>-->
+<!--                      <p>{{meal.description}}</p>-->
+<!--                      <h5>${{meal.price}}</h5>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="row" *ngIf="meals.length === 0">-->
+<!--                <h1>No meals in this Category, Please chose another Category</h1>-->
+<!--              </div>-->
 
-            </div>
+<!--            </div>-->
 
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- food_menu part end-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+<!--  &lt;!&ndash; food_menu part end&ndash;&gt;-->
   <section class="chefs_part blog_item_section section_padding">
     <div class="container">
       <div class="row">
@@ -228,7 +225,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6 col-lg-6">
           <div class="single_blog_item">
             <div class="single_blog_img">
               <img src="https://colorlib.com/preview/theme/dingo/img/team/chefs_3.png" alt="">
@@ -245,7 +242,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4">
+        <div class="col-sm-6 col-lg-6">
           <div class="single_blog_item">
             <div class="single_blog_img">
               <img src="https://colorlib.com/preview/theme/dingo/img/team/chefs_3.png" alt="">
@@ -262,24 +259,6 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 col-lg-4">
-          <div class="single_blog_item">
-            <div class="single_blog_img">
-              <img src="https://colorlib.com/preview/theme/dingo/img/team/chefs_3.png" alt="">
-            </div>
-            <div class="single_blog_text text-center">
-              <h3>Adam Billiard</h3>
-              <p>Chef Master</p>
-              <div class="social_icon">
-                <a> <i class="fab fa-facebook-f"></i> </a>
-                <a> <i class="fab fa-twitter"></i> </a>
-                <a> <i class="fab fa-instagram"></i> </a>
-                <a> <i class="fab fa-skype"></i> </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>

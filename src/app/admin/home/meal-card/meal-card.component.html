@@ -3,12 +3,15 @@
     <mat-card-header style="height:65px;">
       <mat-card-title style="color: #673ab7 !important; ">{{meal.title}}</mat-card-title>
     </mat-card-header>
-    <img *ngIf="meal.category.id === 1"
-         src="http://primebeef.ru/images/cms/data/img_3911.jpg"
-         mat-card-image alt="">
-    <img *ngIf="meal.category.id === 2"
-         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnKkiEIaIpc03qY8j9kDMMJtqT4YGpYUaIUwKe4Eqv9O9ucI_S"
-         mat-card-image alt="">
+<!--    <img *ngIf="meal.category.id === 1"-->
+<!--         src="http://primebeef.ru/images/cms/data/img_3911.jpg"-->
+<!--         mat-card-image alt="">-->
+<!--    <img *ngIf="meal.category.id === 2"-->
+<!--         src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTnKkiEIaIpc03qY8j9kDMMJtqT4YGpYUaIUwKe4Eqv9O9ucI_S"-->
+<!--         mat-card-image alt="">-->
+    <img *ngIf="meal.url" class="meal-image" src="{{meal.url}}" alt="Meal Image">
+    <img *ngIf="!meal.url"  class="meal-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"
+         alt="No Image Available">
   </a>
   <mat-card-actions>
     <h5 style="text-align: center;">Price: {{meal.price | currency: 'USD': 'symbol-narrow'}}</h5>

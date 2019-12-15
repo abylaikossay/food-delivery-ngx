@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {environment} from '../../../../environments/environment';
 import {SendUserService} from '../../../@core/real-services/send-user.service';
@@ -11,7 +11,6 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./new-header.component.scss'],
 })
 export class NewHeaderComponent implements OnInit {
-  // isNavbarCollapsed = true;
   authorized: boolean = false;
   unauthorized: boolean = true;
   userName: string = 'Profile';
@@ -19,6 +18,7 @@ export class NewHeaderComponent implements OnInit {
   user: User;
   constructor(private router: Router,
               private sendUserService: SendUserService,
+              private eRef: ElementRef,
   ) {
   }
 
@@ -44,28 +44,19 @@ export class NewHeaderComponent implements OnInit {
       this.unauthorized = true;
       this.userName = '';
     }
-    // this.activeBtn();
   }
-  // activeBtn () {
-  //   const infoBtn = document.getElementById('infoBtn');
-  //   const shopBtn = document.getElementById('shopBtn');
-  //   const profileBtn = document.getElementById('profileBtn');
-  //   if (this.router.url === '/info') {
-  //     infoBtn.classList.add('active');
-  //     shopBtn.classList.remove('active');
-  //     profileBtn.classList.remove('active');
-  //
-  //   } else if (this.router.url === '/shop') {
-  //     shopBtn.classList.add('active');
-  //     infoBtn.classList.remove('active');
-  //     profileBtn.classList.remove('active');
-  //
-  //   } else if (this.router.url === '/profile') {
-  //     profileBtn.classList.add('active');
-  //     infoBtn.classList.remove('active');
-  //     shopBtn.classList.remove('active');
-  //   }
-  // }
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+      const collapsedDiv = document.getElementById('ftco-nav');
+      if (collapsedDiv.classList.contains('show')) {
+        if (this.eRef.nativeElement.contains(event.target)) {
+        } else {
+          collapsedDiv.classList.remove('show');
+        }
+      }
+
+  }
+
 
   navigateHome() {
     this.router.navigate(['info']);

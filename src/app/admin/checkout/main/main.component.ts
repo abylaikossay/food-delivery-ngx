@@ -90,6 +90,7 @@ export class MainComponent implements OnInit {
     });
   }
   buy() {
+    console.log(this.user);
     const name = this.stripeTest.get('name').value;
     this.stripeService
       .createToken(this.card, { name })
@@ -106,7 +107,7 @@ export class MainComponent implements OnInit {
             mealList.push(object);
           });
           const order = {
-            user: { id: 1},
+            user: { id: this.user.id},
             meals: mealList,
             overallPrice: this.totalPrice,
             paymentType: 'card',

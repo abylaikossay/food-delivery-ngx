@@ -241,7 +241,7 @@ p {
   line-height: 1.7;
   font-size: 15px;
   margin-bottom: 0px;
-  color: #555555;
+  color: white !important;
 }
 
 /* line 94, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_common.scss */
@@ -2579,20 +2579,18 @@ ul {
 /**************** banner part css start ****************/
 /* line 2, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
 .banner_part {
-  height: 880px;
+  height: 650px;
   position: relative;
-  background-image: url(../img/banner_bg.png);
+  background-image: url(http://seabreeze.themetechmount.net/wp-content/uploads/2019/07/titlebar-bg-img.jpg) !important;
   background-repeat: no-repeat;
-  background-size: 41%;
-  background-position: top right;
+  //background-size: 41%;
+  background-position: center;
 }
 
 @media (max-width: 576px) {
   /* line 2, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
   .banner_part {
     height: 650px;
-    background-image: none;
-    background-color: #f0eed4;
   }
 }
 
@@ -2600,8 +2598,6 @@ ul {
   /* line 2, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
   .banner_part {
     height: 650px;
-    background-image: none;
-    background-color: #f0eed4;
   }
 }
 
@@ -2609,15 +2605,13 @@ ul {
   /* line 2, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
   .banner_part {
     height: 700px;
-    background-image: none;
-    background-color: #f0eed4;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   /* line 2, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
   .banner_part {
-    background-size: 35%;
+    //background-size: 35%;
     height: 650px;
   }
 }
@@ -2632,6 +2626,7 @@ ul {
   z-index: 1;
   background: url(../img/banner_overlay.png) bottom right no-repeat;
   right: 19%;
+  display: none;
 }
 
 @media (max-width: 576px) {
@@ -2667,7 +2662,7 @@ ul {
   display: table;
   width: 100%;
   height: 880px;
-  padding-top: 40px;
+  //padding-top: 40px;
 }
 
 /* line 56, E:/169 Dingo Restaurant/169 Dingo Restaurant/169_Dingo_Restautent_html/sass/_banner.scss */
@@ -2731,6 +2726,7 @@ ul {
   font-size: 53px;
   font-family: "Cardo", serif;
   font-weight: 700;
+  color: white !important;
   margin-bottom: 15px;
   line-height: 1.273;
 }

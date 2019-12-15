@@ -1,24 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar"
      style="width: 100%;">
-  <div class="container">
+  <div class="container" style="max-height: 43px;">
     <a class="navbar-brand" [routerLink]="['/info']">THE VIET<small>NOODLE GUY</small></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-            aria-controls="ftco-nav"
+            aria-controls="ftco-nav" id="menu-button"
             aria-expanded="false" aria-label="Toggle navigation">
       <i class="fas fa-bars"></i> Menu
     </button>
     <div class="collapse navbar-collapse" id="ftco-nav">
-      <ul class="navbar-nav ml-auto" style="background-color: #f9f8f3">
+      <ul class="navbar-nav ml-auto" style="background-color: #0b1722">
         <li class="nav-item"><a [routerLink]="['/info']" class="nav-link"><i class="fa fa-home"></i> Home</a></li>
         <li class="nav-item"><a [routerLink]="['/shop']" class="nav-link"><i class="fa fa-shopping-cart"></i> Shop</a>
         </li>
         <li class="nav-item d-inline-block" *ngIf="authorized" ngbDropdown>
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user"></i> {{userName}}</a>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="background-color: transparent !important;">
-            <button class="nav-link" style="background-color: #f9f8f3 !important;color: black !important;"
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="background-color: transparent !important; margin-left: -30px;">
+            <button class="nav-link" style="background-color: #0b1722 !important;color: white !important; margin-left: 30px;"
                     ngbDropdownItem [routerLink]="['/profile']">Profile
             </button>
-            <button class="nav-link" style="background-color: #f9f8f3 !important;color: black !important;"
+            <button class="nav-link" style="background-color: #0b1722 !important;color: white !important; margin-left: 30px;"
                     ngbDropdownItem [routerLink]="['/auth/logout']">Logout
             </button>
           </div>
